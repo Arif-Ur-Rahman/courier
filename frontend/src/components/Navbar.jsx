@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+
 
 function Navbar() {
     let [sticky, setSticky] = useState(false);
@@ -18,25 +20,25 @@ function Navbar() {
   }, []);
   const navItems = (
     <>
-      <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>About</a>
-      </li>
-      <li>
-        <a>Pricing</a>
-      </li>
-      <li>
-        <a>Track Parcel</a>
-      </li>
-      <li>
-        <a>Cutomer Support</a>
-      </li>
-      <li>
-        <a>Contact</a>
-      </li>
-    </>
+    <li>
+      <Link to="/">Home</Link>
+    </li>
+    <li>
+      <Link to="/about">About</Link>
+    </li>
+    <li>
+      <Link to="/pricing">Pricing</Link>
+    </li>
+    <li>
+      <Link to="/track-parcel">Track Parcel</Link>
+    </li>
+    <li>
+      <Link to="/customer-support">Customer Support</Link>
+    </li>
+    <li>
+      <Link to="/contact">Contact</Link>
+    </li>
+  </>
   );
   return (
     <>
