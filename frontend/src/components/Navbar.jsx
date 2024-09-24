@@ -109,7 +109,7 @@ function Navbar() {
             </label>
             </div>
 
-            <a className="bg-green-500 text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer">Login</a>
+            <Link to="/login" className="bg-green-500 text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer">Login</Link>
           </div>
         </div>
       </div>
