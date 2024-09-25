@@ -21,21 +21,22 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+    <div className="min-h-screen bg-cover bg-green-400 bg-center flex items-center justify-center">
+      <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg shadow-lg p-8 md:p-12 max-w-md w-full">
         <h2 className="text-2xl font-bold text-center">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="name" className="block text-sm font-medium text-black placeholder-black-400">
               Full Name
             </label>
             <input
+              placeholder="Enter your name"
               type="text"
               name="name"
               id="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black placeholder-black-400"
               required
             />
           </div>
@@ -44,26 +45,28 @@ const Signup = () => {
               Email Address
             </label>
             <input
+              placeholder="Enter your email"
               type="email"
               name="email"
               id="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md text-black placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium text-black placeholder-black-400">
               Password
             </label>
             <input
+              placeholder="Password"
               type="password"
               name="password"
               id="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none text-black placeholder-black-400 focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
@@ -72,12 +75,13 @@ const Signup = () => {
               Confirm Password
             </label>
             <input
+              placeholder="Confirm Password"
               type="password"
               name="confirmPassword"
               id="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black placeholder-black-400"
               required
             />
           </div>
@@ -90,9 +94,9 @@ const Signup = () => {
             </button>
           </div>
         </form>
-        <p className="text-sm text-center text-gray-600">
+        <p className="text-sm text-center text-black mt-6">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <a href="/login" className="w-full py-2 mx-4 px-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded transition duration-300">
             Log In
           </a>
         </p>
