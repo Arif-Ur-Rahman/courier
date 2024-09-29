@@ -20,7 +20,7 @@ const Sidebar = () => {
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full bg-black text-white space-y-2">
                         <li><a href="#users" className="text-lg">Dashboard</a></li>
-                        <li><a href="#agents" className="text-lg">Add parcel</a></li>
+                        <li><a href="/userboard/addparcel" className="text-lg">Add parcel</a></li>
                         <li><a href="#settings" className="text-lg">Consignments</a></li>
                         <li><a href="#reports" className="text-lg">Fraud check</a></li>
                         <li><a href="#reports" className="text-lg">Pickup Request</a></li>

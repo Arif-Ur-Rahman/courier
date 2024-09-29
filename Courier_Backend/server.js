@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
-// const packageRoutes = require('./routes/packageRoutes');
+const parcelRoutes = require('./routes/parcelRoutes');
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ app.use(express.json());
 
 // রাউটস
 app.use('/api/auth', authRoutes);
-// app.use('/api/packages', packageRoutes);
+app.use('/api', parcelRoutes);
 
 // হেলথ চেক রাউট
 app.get('/', (req, res) => {
@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-
+ 
 // সার্ভার লিসেনিং
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

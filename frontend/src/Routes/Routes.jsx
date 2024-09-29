@@ -7,6 +7,8 @@ import HomeCover from "../components/HomeCover";
 import UserDashboard from "../Pages/UserDashboard";
 import Login from "../components/LoginSignUp/Login";
 import Signup from "../components/LoginSignUp/Signup";
+import Addparcel from "../Pages/Parcel/Addparcel";
+ 
 
  
 
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: 'userpage',
             element: <Hompage></Hompage>,
+          },
+          {
+            path: 'addparcel',
+            element: <Addparcel></Addparcel>
           }
         ]
       }
