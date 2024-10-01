@@ -9,6 +9,7 @@ import Login from "../components/LoginSignUp/Login";
 import Signup from "../components/LoginSignUp/Signup";
 import Addparcel from "../Pages/Parcel/Addparcel";
 import Label from "../Pages/Parcel/Label";
+import Invoice from "../Pages/Parcel/Invoice";
  
 
  
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
             path: 'label/:id',
             element: <Label></Label>
           },
+          {
+            path: 'invoice/:id',
+            element: <Invoice></Invoice>
+
+          }
         ]
       }
        

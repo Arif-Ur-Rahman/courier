@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Barcode from 'react-barcode';
 import QRCode from 'react-qr-code';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './label.css';
 import logo from '../../assets/logo.jpg'
 
@@ -47,8 +47,8 @@ const Label = () => {
       <div className="w-full flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Parcel ID# {parcelData._id}</h2>
         <div className="flex space-x-4">
-          <button className="bg-gray-200 text-gray-800 px-4 py-2 rounded">Invoice</button>
-          <button className="bg-green-500 text-white px-4 py-2 rounded">Label</button>
+          <Link to={`/userboard/invoice/${id}`}><button className="bg-gray-200 text-gray-800 px-4 py-2 rounded">Invoice</button></Link>
+          <Link to={`/userboard/label/${id}`}><button className="bg-green-500 text-white px-4 py-2 rounded">Label</button></Link>
         </div>
       </div>
 
