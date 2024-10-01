@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Addparcel = () => {
   const [formData, setFormData] = useState({
+
     phone: '',
     name: '',
     address: '',
@@ -12,8 +14,16 @@ const Addparcel = () => {
     invoice: '',
     note: '',
     weight: 0,
-    exchange: false
+    exchange: false,
+    dtype: false
   });
+  const navigate = useNavigate();
+  const handleRadioChange = (e)=> {
+    setFormData({
+      ...formData,
+      dtype: e.target.value
+    });
+  }
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,8 +36,14 @@ const Addparcel = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/parcels', formData);
+      const response = await axios.post('http://localhost:5000/api/parcels', formData);
+      console.log(response);
+      // const parcelId = response.data.parcel._id;
+      const parcel = response.data.parcel;
+      console.log('*******', parcel._id);
       alert('Parcel added successfully');
+      navigate(`/userboard/label/${parcel._id}`, { state: { parcel } });
+
     } catch (error) {
       console.error('Error submitting the form:', error);
     }
@@ -35,9 +51,33 @@ const Addparcel = () => {
 
   return (
    <div className="my-16">
+    
     <h1 className="text-center font-semibold text-5xl mb-8">Please Add Your Parcel</h1>
      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <div className="grid grid-cols-2 gap-4">
+     <div className="flex">
+        <div className="flex items-center mr-4">
+              <input 
+                type="radio" 
+                name="dtype" 
+                value="home"
+                checked={formData.dtype === 'home'} 
+                onChange={handleRadioChange}
+                className="mr-2" />
+              <label className="text-gray-700">Home Delivery</label>
+            </div>
+            <div className="flex items-center">
+              <input 
+                type="radio" 
+                name="dtype"
+                value="point" 
+                checked={formData.dtype === 'point'} 
+                onChange={handleRadioChange}
+                className="mr-2" />
+              <label className="text-gray-700">Point Delivery</label>
+            </div>
+     </div>
+          {/* .......... */}
         <div>
           <label className="block text-gray-700">Phone#</label>
           <input 

@@ -34,3 +34,27 @@ exports.getAllParcels = async (req, res) => {
     });
   }
 };
+
+// ............
+// Controller to get parcel by ID
+exports.getParcelById = async (req, res) => {
+  try {
+    const parcelId = req.params.id;
+    const parcel = await Parcel.findById(parcelId);
+
+    if (!parcel) {
+      return res.status(404).json({ message: 'Parcel not found' });
+    }
+
+    res.status(200).json(parcel);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error fetching parcel',
+      error: error.message,
+    });
+  }
+};
+
+ 
+
+

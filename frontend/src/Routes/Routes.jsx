@@ -8,6 +8,7 @@ import UserDashboard from "../Pages/UserDashboard";
 import Login from "../components/LoginSignUp/Login";
 import Signup from "../components/LoginSignUp/Signup";
 import Addparcel from "../Pages/Parcel/Addparcel";
+import Label from "../Pages/Parcel/Label";
  
 
  
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
           {
             path: 'addparcel',
             element: <Addparcel></Addparcel>
-          }
+          },
+          {
+            path: 'label/:id',
+            element: <Label></Label>
+          },
         ]
       }
        
