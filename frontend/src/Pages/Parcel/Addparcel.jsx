@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Sidebar from "../Shared/Sidebar";
 
 const Addparcel = () => {
   const [formData, setFormData] = useState({
@@ -50,7 +51,9 @@ const Addparcel = () => {
   };
 
   return (
-   <div className="my-16">
+  <div className="flex">
+    <Sidebar></Sidebar>
+    <div className="my-16 ml-52">
     
     <h1 className="text-center font-semibold text-5xl mb-8">Please Add Your Parcel</h1>
      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -181,6 +184,7 @@ const Addparcel = () => {
     </form>
 
    </div>
+  </div>
   );
 };
 

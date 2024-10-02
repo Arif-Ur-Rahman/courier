@@ -5,6 +5,7 @@ const connectDB = require('./config/db');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const parcelRoutes = require('./routes/parcelRoutes');
+const priceRouts = require('./routes/pricingRoutes');
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 // রাউটস
 app.use('/api/auth', authRoutes);
 app.use('/api', parcelRoutes);
+app.use('', priceRouts);
 
 // হেলথ চেক রাউট
 app.get('/', (req, res) => {

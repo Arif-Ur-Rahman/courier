@@ -24,7 +24,7 @@ const Sidebar = () => {
                         <li><a href="#settings" className="text-lg">Consignments</a></li>
                         <li><a href="#reports" className="text-lg">Fraud check</a></li>
                         <li><a href="#reports" className="text-lg">Pickup Request</a></li>
-                        <li><a href="#reports" className="text-lg">Pricing</a></li>
+                        <li><a href="/userboard/price" className="text-lg">Pricing</a></li>
                         <li><a href="#reports" className="text-lg">Bulk Print</a></li>
                         <li><a href="#reports" className="text-lg">Modarator</a></li>
                     </ul>

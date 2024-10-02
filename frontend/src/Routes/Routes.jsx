@@ -10,6 +10,8 @@ import Signup from "../components/LoginSignUp/Signup";
 import Addparcel from "../Pages/Parcel/Addparcel";
 import Label from "../Pages/Parcel/Label";
 import Invoice from "../Pages/Parcel/Invoice";
+import Pricing from "../components/Pricing/Pricing";
+import PricingCal from "../Pages/Pricing/PricingCal";
  
 
  
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup></Signup>,
       },
+      {
+        path: '/pricing',
+        element: <Pricing></Pricing>
+      },
       // User Panel routes..............bellow
       {
         path:'/userboard',
@@ -53,7 +59,11 @@ const router = createBrowserRouter([
             path: 'invoice/:id',
             element: <Invoice></Invoice>
 
-          }
+          },
+          {
+            path: 'price',
+            element: <PricingCal></PricingCal>,
+          },
         ]
       }
        

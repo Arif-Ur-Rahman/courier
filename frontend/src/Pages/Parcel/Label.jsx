@@ -76,7 +76,7 @@ const Label = () => {
             {/* Parcel Details */}
             <div className="text-xs">
               <p>ID: <strong>{parcelData._id}</strong></p>
-              <p>D. Type: {parcelData.deliveryType}</p>
+              <p>D. Type: {parcelData.dtype}</p>
               <p>WGT: {parcelData.weight}</p>
             </div>
           </div>
