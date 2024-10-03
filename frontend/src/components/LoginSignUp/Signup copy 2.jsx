@@ -1,9 +1,7 @@
-// Signup.jsx
-import React, { useState } from "react";
+// Signup.js
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
-import emailjs from '@emailjs/browser'; // Import EmailJS
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -17,24 +15,6 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  // Function to send confirmation email
-  const sendConfirmationEmail = (name, email) => {
-    // const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;       // 'service_hif5and'
-    // const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;     // 'template_itcg9u7'
-    // const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;       // '-rKJeI0iB4ZX-hOPq'
-       const serviceID = 'service_d6ufdt5';
-       const templateID = 'template_78v66qo';
-       const publicKey = 'mmoeB11bv-Ml0BuTy';
-
-    const templateParams = {
-      name: name,
-      email: email,
-      // Add other parameters if your template requires
-    };
-
-    return emailjs.send(serviceID, templateID, templateParams, publicKey);
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,27 +47,9 @@ const Signup = () => {
       // Store the token (you can use localStorage or any state management library)
       localStorage.setItem("token", token);
 
-      // Send confirmation email
-      await sendConfirmationEmail(formData.name, formData.email)
-        .then(() => {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Registration successful! A confirmation email has been sent to your email address.',
-            icon: 'success',
-            confirmButtonText: 'Done'
-          });
-        })
-        .catch((error) => {
-          console.error('Failed to send confirmation email:', error);
-          Swal.fire({
-            title: 'Warning!',
-            text: 'Registration successful, but failed to send confirmation email.',
-            icon: 'warning',
-            confirmButtonText: 'Okay'
-          });
-        });
+      // Optionally, you can decode the token to get user info or set up user context
 
-      // Redirect to login or another page after successful registration
+      // Redirect to a protected route or dashboard
       navigate("/login");
     } catch (err) {
       console.error(err);
