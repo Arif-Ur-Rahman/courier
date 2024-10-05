@@ -1,0 +1,76 @@
+import { createBrowserRouter } from "react-router-dom";
+ 
+ 
+import Hompage from "../Pages/Hompage";
+import Home from "../components/Home";
+import HomeCover from "../components/HomeCover";
+import UserDashboard from "../Pages/UserDashboard";
+import Login from "../components/LoginSignUp/Login";
+import Signup from "../components/LoginSignUp/Signup";
+import Addparcel from "../Pages/Parcel/Addparcel";
+import Label from "../Pages/Parcel/Label";
+import Invoice from "../Pages/Parcel/Invoice";
+import Pricing from "../components/Pricing/Pricing";
+import PricingCal from "../Pages/Pricing/PricingCal";
+ 
+
+ 
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home></Home>,
+    children: [
+      {
+        
+            path: "/",
+            element: <HomeCover></HomeCover>,
+      },
+      {
+        path: 'login',
+        element: <Login></Login>
+      },
+      {
+        path: '/signup',
+        element: <Signup></Signup>,
+      },
+      {
+        path: '/pricing',
+        element: <Pricing></Pricing>
+      },
+      // User Panel routes..............bellow
+      {
+        path:'/userboard',
+        element: <UserDashboard></UserDashboard>,
+        children: [
+          {
+            path: 'userpage',
+            element: <Hompage></Hompage>,
+          },
+          {
+            path: 'addparcel',
+            element: <Addparcel></Addparcel>
+          },
+          {
+            path: 'label/:id',
+            element: <Label></Label>
+          },
+          {
+            path: 'invoice/:id',
+            element: <Invoice></Invoice>
+
+          },
+          {
+            path: 'price',
+            element: <PricingCal></PricingCal>,
+          },
+        ]
+      }
+       
+    ],
+  },
+]);
+
+export default router;
+
+      
