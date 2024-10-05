@@ -82,9 +82,12 @@ const Label = () => {
           </div>
           <div className="mt-4 border-2">
             <div className="ml-2">
-              <p>Name: <strong>{parcelData.name}</strong></p>
-              <p>Phone: <strong>{parcelData.phone}</strong></p>
-              <p>Address: <strong>{parcelData.address}</strong></p>
+              <p>Sender Name: <strong>{parcelData.sname}</strong></p>
+              <p>Sender Phone: <strong>{parcelData.sphone}</strong></p>
+              <p>Sender Address: <strong>{parcelData.saddress}</strong></p>
+              <p>Reciever Name: <strong>{parcelData.rname}</strong></p>
+              <p>Reciever Phone: <strong>{parcelData.rphone}</strong></p>
+              <p>Reciever Address: <strong>{parcelData.raddress}</strong></p>
             </div>
           </div>
           <div className="mt-4 border-2">
@@ -98,8 +101,8 @@ const Label = () => {
               <p>{new Date(parcelData.createdAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
             </div>
             <div>
-              <strong>200 Courier</strong>
-              <p>www.200courier.com</p>
+              <strong>2000 Courier</strong>
+              <p>www.2000courier.com</p>
             </div>
           </div>
         </div>

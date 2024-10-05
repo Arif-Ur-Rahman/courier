@@ -2,26 +2,46 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ParcelSchema = new Schema({
-  phone: {
+  sphone: {
     type: String,
     required: true,
   },
-  name: {
+  rphone: {
     type: String,
     required: true,
   },
-  address: {
+  sname: {
     type: String,
     required: true,
   },
-  district: {
-    type: String,
-    default: 'Dhaka City',
-  },
-  thana: {
+  rname: {
     type: String,
     required: true,
   },
+  semail: {
+    type: String,
+    required: true,
+  },
+  remail: {
+    type: String,
+    required: true,
+  },
+  saddress: {
+    type: String,
+    required: true,
+  },
+  raddress: {
+    type: String,
+    required: true,
+  },
+  // district: {
+  //   type: String,
+  //   default: 'Dhaka City',
+  // },
+  // thana: {
+  //   type: String,
+  //   required: true,
+  // },
   codAmount: {
     type: Number,
     required: true,

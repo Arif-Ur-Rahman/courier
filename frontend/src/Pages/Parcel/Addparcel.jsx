@@ -8,11 +8,16 @@ import { sendUserConfirmationEmail, sendAdminNotificationEmail } from './utils';
 
 const Addparcel = () => {
   const [formData, setFormData] = useState({
-    phone: '',
-    name: '',
-    address: '',
-    district: 'Dhaka City',
-    thana: '',
+    sphone: '',
+    rphone: '',
+    sname: '',
+    rname: '',
+    semail: '',
+    remail: '',
+    saddress: '',
+    raddress: '',
+    sdistrict: '',
+    rdistrict: '',
     codAmount: '',
     invoice: '',
     note: '',
@@ -50,13 +55,17 @@ const Addparcel = () => {
       
       // Send confirmation email to user
       await sendUserConfirmationEmail(
-        formData.name,
-        formData.email,
+        formData.sname,
+        formData.rname,
+        formData.semail,
+        formData.remail,
         parcel._id,
-        formData.phone,
-        formData.address,
-        formData.district,
-        formData.thana,
+        formData.sphone,
+        formData.rphone,
+        formData.saddress,
+        formData.raddress,
+        // formData.sdistrict,
+        // formData.rdistrict,
         formData.weight,
         formData.codAmount,
         formData.exchange
@@ -71,13 +80,17 @@ const Addparcel = () => {
 
       // Send notification email to admin
       await sendAdminNotificationEmail(
-        formData.name,
-        formData.email,
+        formData.sname,
+        formData.rname,
+        formData.semail,
+        formData.remail,
         parcel._id,
-        formData.phone,
-        formData.address,
-        formData.district,
-        formData.thana,
+        formData.sphone,
+        formData.rphone,
+        formData.saddress,
+        formData.raddress,
+        // formData.sdistrict,
+        // formData.rdistrict,
         formData.weight,
         formData.codAmount,
         formData.exchange
@@ -142,19 +155,7 @@ const Addparcel = () => {
               </div>
             </div>
 
-            {/* Phone */}
-            <div>
-              <label className="block text-gray-700">Phone#</label>
-              <input 
-                type="text" 
-                name="phone" 
-                value={formData.phone} 
-                onChange={handleChange}
-                className="w-full p-2 border rounded" 
-                placeholder="Type Phone Number" />
-            </div>
-
-            {/* COD Amount */}
+              {/* COD Amount */}
             <div>
               <label className="block text-gray-700">COD Amount</label>
               <input 
@@ -165,17 +166,119 @@ const Addparcel = () => {
                 className="w-full p-2 border rounded" 
                 placeholder="Type Cash on Delivery Amount" />
             </div>
+            {/* Phone */}
+            <div>
+              <label className="block text-gray-700">Sender Phone#</label>
+              <input 
+                type="text" 
+                name="sphone" 
+                value={formData.sphone} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="Type Phone Number" />
+            </div>
+            <div>
+              <label className="block text-gray-700">Reciever Phone#</label>
+              <input 
+                type="text" 
+                name="rphone" 
+                value={formData.rphone} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="Type Phone Number" />
+            </div>
+
+     
 
             {/* Name */}
             <div>
-              <label className="block text-gray-700">Name</label>
+              <label className="block text-gray-700">Sender Name</label>
               <input 
                 type="text" 
-                name="name" 
-                value={formData.name} 
+                name="sname" 
+                value={formData.sname} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="Type Sender Name" />
+            </div>
+            <div>
+              <label className="block text-gray-700">Reciever Name</label>
+              <input 
+                type="text" 
+                name="rname" 
+                value={formData.rname} 
                 onChange={handleChange}
                 className="w-full p-2 border rounded" 
                 placeholder="Type Recipient Name" />
+            </div>
+            {/* Email */}
+            <div>
+              <label className="block text-gray-700">Sender Email</label>
+              <input 
+                type="email" 
+                name="semail" 
+                value={formData.semail} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="Type Sender Email" />
+            </div>
+            <div>
+              <label className="block text-gray-700">Reciever Email</label>
+              <input 
+                type="email" 
+                name="remail" 
+                value={formData.remail} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="Type Reciever Email" />
+            </div>
+         
+
+            {/* Address */}
+            <div>
+              <label className="block text-gray-700"> Sender Address</label>
+              <input 
+                type="text" 
+                name="saddress" 
+                value={formData.saddress} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="Type Address" />
+            </div>
+            <div>
+              <label className="block text-gray-700">Reciever Address</label>
+              <input 
+                type="text" 
+                name="raddress" 
+                value={formData.raddress} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="Type Address" />
+            </div>
+               {/* District */}
+               <div>
+              <label className="block text-gray-700">Sender District</label>
+              <input 
+                type="text" 
+                name="sdistrict" 
+                value={formData.sdistrict} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="" />
+            </div>
+
+        
+
+            {/* Thana */}
+            <div>
+              <label className="block text-gray-700">Reciever District</label>
+              <input 
+                type="text" 
+                name="rdistrict" 
+                value={formData.rdistrict} 
+                onChange={handleChange}
+                className="w-full p-2 border rounded" 
+                placeholder="" />
             </div>
 
             {/* Invoice */}
@@ -190,41 +293,6 @@ const Addparcel = () => {
                 placeholder="Type Invoice (If any)" />
             </div>
 
-            {/* Address */}
-            <div>
-              <label className="block text-gray-700">Address</label>
-              <input 
-                type="text" 
-                name="address" 
-                value={formData.address} 
-                onChange={handleChange}
-                className="w-full p-2 border rounded" 
-                placeholder="Type Address" />
-            </div>
-
-            {/* Note */}
-            <div>
-              <label className="block text-gray-700">Note</label>
-              <textarea 
-                name="note" 
-                value={formData.note} 
-                onChange={handleChange}
-                className="w-full p-2 border rounded" 
-                placeholder="Type Note (max 400 chars)" />
-            </div>
-
-            {/* District */}
-            <div>
-              <label className="block text-gray-700">District</label>
-              <input 
-                type="text" 
-                name="district" 
-                value={formData.district} 
-                onChange={handleChange}
-                className="w-full p-2 border rounded" 
-                placeholder="Dhaka City" />
-            </div>
-
             {/* Weight */}
             <div>
               <label className="block text-gray-700">Weight (KG)</label>
@@ -236,19 +304,18 @@ const Addparcel = () => {
                 className="w-full p-2 border rounded" 
                 placeholder="0" />
             </div>
-
-            {/* Thana */}
+            {/* Note */}
             <div>
-              <label className="block text-gray-700">Thana</label>
-              <input 
-                type="text" 
-                name="thana" 
-                value={formData.thana} 
+              <label className="block text-gray-700">Note</label>
+              <textarea 
+                name="note" 
+                value={formData.note} 
                 onChange={handleChange}
                 className="w-full p-2 border rounded" 
-                placeholder="Type Thana" />
+                placeholder="Type Note (max 400 chars)" />
             </div>
 
+         
             {/* Exchange */}
             <div className="flex items-center">
               <input 
