@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Sidebar from "../Shared/Sidebar";
+import Navbar from "../Shared/Navbar";
 import Swal from 'sweetalert2';
 import { sendUserConfirmationEmail, sendAdminNotificationEmail } from './utils'; // Import email functions
 
@@ -175,6 +176,8 @@ const Addparcel = () => {
   };
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="flex">
       <Sidebar />
       <div className="my-16 ml-52">
@@ -408,6 +411,7 @@ const Addparcel = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

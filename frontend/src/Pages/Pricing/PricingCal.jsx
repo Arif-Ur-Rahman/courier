@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './inputform.css';
 import Sidebar from "../Shared/Sidebar";
+import Navbar from "../Shared/Navbar";
 
 const districts = [
   "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogura", "Brahmanbaria", 
@@ -51,6 +52,8 @@ const PricingCal = () => {
   }, [weight, from, destination, category, serviceType]);
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="flex"> 
     <Sidebar></Sidebar>
     <div className="mx-auto mt-10">
@@ -107,6 +110,7 @@ const PricingCal = () => {
       </div>
     </div>
     </div>
+    </>
   );
 };
 

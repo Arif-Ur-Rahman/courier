@@ -152,6 +152,9 @@ function Navbar() {
                   <Link to="/profile">Profile</Link>
                 </li>
                 <li>
+                  <Link to="/userboard/userpage">Dashboard</Link>
+                </li>
+                <li>
                   <button onClick={handleLogout} className="w-full text-left">
                     Logout
                   </button>

@@ -11,32 +11,26 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Function to set user from token
-  const setUserFromToken = (token) => {
-    try {
-      const decoded = decodeJwt(token);
-      setUser({
-        username: decoded.name,
-        email: decoded.email,
-      });
-    } catch (error) {
-      console.error('Invalid token:', error);
-      setUser(null);
-      localStorage.removeItem('token');
-    }
-  };
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setUserFromToken(token);
+      try {
+        const decoded = decodeJwt(token);
+        setUser({
+          username: decoded.username,
+          email: decoded.email,
+        });
+      } catch (error) {
+        console.error('Invalid token:', error);
+        localStorage.removeItem('token');
+      }
     }
     setLoading(false);
   }, []);
 
-  const login = (token) => {
+  const login = (token, userData) => {
     localStorage.setItem('token', token);
-    setUserFromToken(token);
+    setUser(userData);
   };
 
   const logout = () => {

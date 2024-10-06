@@ -12,6 +12,8 @@ import Label from "../Pages/Parcel/Label";
 import Invoice from "../Pages/Parcel/Invoice";
 import Pricing from "../components/Pricing/Pricing";
 import PricingCal from "../Pages/Pricing/PricingCal";
+import UploadPage from "../Pages/Bulk/Uploadpage";
+import DataDisplay from "../Pages/Bulk/DataDisplay";
  
 
  
@@ -63,6 +65,14 @@ const router = createBrowserRouter([
           {
             path: 'price',
             element: <PricingCal></PricingCal>,
+          },
+          {
+            path: 'fileup',
+            element: <UploadPage></UploadPage>
+          },
+          {
+            path: 'imported',
+            element: <DataDisplay></DataDisplay>
           },
         ]
       }
