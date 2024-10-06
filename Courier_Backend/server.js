@@ -6,6 +6,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const parcelRoutes = require('./routes/parcelRoutes');
 const priceRouts = require('./routes/pricingRoutes');
+const parcelpriceRoutes = require('./routes/parcelpriceRoutes');
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api', parcelRoutes);
 app.use('', priceRouts);
+app.use('', parcelpriceRoutes);
 
 // হেলথ চেক রাউট
 app.get('/', (req, res) => {
