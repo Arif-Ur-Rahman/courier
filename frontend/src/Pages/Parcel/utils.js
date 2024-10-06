@@ -7,17 +7,21 @@ const serviceID = 'service_d6ufdt5';
 const publicKey = 'mmoeB11bv-Ml0BuTy';
 
 // Send Confirmation Email to User
-export const sendUserConfirmationEmail = (name, email, parcelId, phone, address, district, thana, weight, codAmount, exchange) => {
+export const sendUserConfirmationEmail = (sname, rname, semail, remail, parcelId, sphone,rphone, saddress, raddress, weight, codAmount, exchange) => {
   const templateID = 'template_s4qpwoh';
 
   const templateParams = {
-    name,
-    email,
+    sname,
+    rname,
+    semail,
+    remail,
     parcelId,
-    phone,
-    address,
-    district,
-    thana,
+    sphone,
+    rphone,
+    saddress,
+    raddress,
+    // district,
+    // thana,
     weight,
     codAmount,
     exchange: exchange ? 'Yes' : 'No',
@@ -27,17 +31,21 @@ export const sendUserConfirmationEmail = (name, email, parcelId, phone, address,
 };
 
 // Send Notification Email to Admin
-export const sendAdminNotificationEmail = (name, email, parcelId, phone, address, district, thana, weight, codAmount, exchange) => {
+export const sendAdminNotificationEmail = (sname, rname, semail, remail, parcelId, sphone,rphone, saddress, raddress, weight, codAmount, exchange) => {
   const templateID = 'template_s4qpwoh';
 
   const templateParams = {
-    name,
-    email,
+    sname,
+    rname,
+    semail,
+    remail,
     parcelId,
-    phone,
-    address,
-    district,
-    thana,
+    sphone,
+    rphone,
+    saddress,
+    raddress,
+    // district,
+    // thana,
     weight,
     codAmount,
     exchange: exchange ? 'Yes' : 'No',

@@ -74,9 +74,12 @@ const Invoice = () => {
         _id,
         invoice,
         createdAt,
-        name,
-        phone,
-        address,
+        sname,
+        rname,
+        sphone,
+        rphone,
+        saddress,
+        raddress,
         note,
         codAmount,
     } = parcelData;
@@ -137,14 +140,23 @@ const Invoice = () => {
                     {/* Ship To Info */}
                     <div className="w-full md:w-1/2 mb-6 md:mb-0">
                         <h3 className="text-xl font-semibold mb-4">Ship To</h3>
-                        <p>
-                            Name: <strong>{name}</strong>
+                        {/* <p>
+                            Name: <strong>{sname}</strong>
                         </p>
                         <p>
-                            Phone: <strong>{phone}</strong>
+                            Phone: <strong>{sphone}</strong>
                         </p>
                         <p>
-                            Address: <strong>{address}</strong>
+                            Address: <strong>{saddress}</strong>
+                        </p> */}
+                        <p>
+                            Name: <strong>{rname}</strong>
+                        </p>
+                        <p>
+                            Phone: <strong>{rphone}</strong>
+                        </p>
+                        <p>
+                            Address: <strong>{raddress}</strong>
                         </p>
                         <p className="mt-28">
                             Note: <strong>{note || 'N/A'}</strong>
