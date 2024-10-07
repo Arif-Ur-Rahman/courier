@@ -1,39 +1,68 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../Parcel/label.css';
 
 const DataDisplay = () => {
-  const location = useLocation();
-  const { state } = location;
-  const { sheetData } = state || {};
+  const [consignments, setConsignments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from the backend
+    const fetchConsignments = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/consignment');
+        setConsignments(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Error fetching consignments');
+        setLoading(false);
+      }
+    };
+
+    fetchConsignments();
+  }, []);
+
+  if (loading) {
+    return <div>Loading data...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="p-8">
-      <h2 className="text-xl mb-4">Imported Consignment ({sheetData ? sheetData.length : 0})</h2>
-      <table className="min-w-full bg-white">
+      <h2 className="text-xl mb-4">Imported Consignment ({consignments.length})</h2>
+      <table className="min-w-full bg-white printable-label">
         <thead>
           <tr>
-            <th className="py-2">Creation Date</th>
+            {/* <th className="py-2">Creation Date</th> */}
             <th className="py-2">Id</th>
             <th className="py-2">Invoice</th>
-            <th className="py-2">Tracking Code</th>
-            <th className="py-2">Customer Name</th>
+            <th className="py-2">Delivary Type</th>
+            <th className="py-2">Sender Name</th>
+            <th className="py-2">Reciever Name</th>
             <th className="py-2">Cod Amount</th>
-            <th className="py-2">Lot</th>
-            <th className="py-2">Notes</th>
+            <th className="py-2">Weight</th>
+            <th className="py-2">S.Address</th>
+            <th className="py-2">R.Address</th>
           </tr>
         </thead>
         <tbody>
-          {sheetData && sheetData.length > 0 ? (
-            sheetData.map((row, index) => (
+          {consignments.length > 0 ? (
+            consignments.map((row, index) => (
               <tr key={index} className="border-t">
-                <td className="py-2">{new Date().toLocaleString()}</td>
-                <td className="py-2">{index + 1}</td>
-                <td className="py-2">{row.Invoice}</td>
-                <td className="py-2">{row.TrackingCode || 'N/A'}</td>
-                <td className="py-2">{row.Name}</td>
-                <td className="py-2">{row.Amount}</td>
-                <td className="py-2">{row.Lot || 'N/A'}</td>
-                <td className="py-2">{row.Notes || 'Optional'}</td>
+                {/* <td className="py-2">{new Date(row.createdAt).toLocaleString()}</td> */}
+                <td className="py-2">{row._id}</td>
+                <td className="py-2">{row.invoice}</td>
+                <td className="py-2">{row.dtype}</td>
+                <td className="py-2">{row.sname}</td>
+                <td className="py-2">{row.rname}</td>
+                <td className="py-2">{row.codAmount}</td>
+                <td className="py-2">{row.weight}</td>
+                <td className="py-2">{row.saddress}</td>
+                <td className="py-2">{row.raddress}</td>
               </tr>
             ))
           ) : (
