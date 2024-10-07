@@ -37,7 +37,7 @@ const Addparcel = () => {
     invoice: '',
     note: '',
     weight: 0,
-    exchange: false,
+    // exchange: false,
     dtype: 'home' // Default delivery type
   });
   
@@ -120,7 +120,7 @@ const Addparcel = () => {
         formData.raddress,
         formData.weight,
         formData.codAmount,
-        formData.exchange
+        // formData.exchange
       )
       .then(() => {
         console.log('User confirmation email sent successfully.');
@@ -143,7 +143,7 @@ const Addparcel = () => {
         formData.raddress,
         formData.weight,
         formData.codAmount,
-        formData.exchange
+        // formData.exchange
       )
       .then(() => {
         console.log('Admin notification email sent successfully.');
@@ -390,15 +390,7 @@ const Addparcel = () => {
             </div>
 
             {/* Exchange */}
-            <div className="flex items-center col-span-2">
-              <input 
-                type="checkbox" 
-                name="exchange" 
-                checked={formData.exchange} 
-                onChange={handleChange}
-                className="mr-2" />
-              <label className="text-gray-700">Exchange</label>
-            </div>
+          
           </div>
 
           {/* Submit Button */}

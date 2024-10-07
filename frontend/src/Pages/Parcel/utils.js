@@ -7,7 +7,7 @@ const serviceID = 'service_d6ufdt5';
 const publicKey = 'mmoeB11bv-Ml0BuTy';
 
 // Send Confirmation Email to User
-export const sendUserConfirmationEmail = (sname, rname, semail, remail, parcelId, sphone,rphone, saddress, raddress, weight, codAmount, exchange) => {
+export const sendUserConfirmationEmail = (sname, rname, semail, remail, parcelId, sphone,rphone, saddress, raddress, weight, codAmount) => {
   const templateID = 'template_s4qpwoh';
 
   const templateParams = {
@@ -24,14 +24,14 @@ export const sendUserConfirmationEmail = (sname, rname, semail, remail, parcelId
     // thana,
     weight,
     codAmount,
-    exchange: exchange ? 'Yes' : 'No',
+    // exchange: exchange ? 'Yes' : 'No',
   };
 
   return emailjs.send(serviceID, templateID, templateParams, publicKey);
 };
 
 // Send Notification Email to Admin
-export const sendAdminNotificationEmail = (sname, rname, semail, remail, parcelId, sphone,rphone, saddress, raddress, weight, codAmount, exchange) => {
+export const sendAdminNotificationEmail = (sname, rname, semail, remail, parcelId, sphone,rphone, saddress, raddress, weight, codAmount) => {
   const templateID = 'template_s4qpwoh';
 
   const templateParams = {
@@ -48,7 +48,7 @@ export const sendAdminNotificationEmail = (sname, rname, semail, remail, parcelI
     // thana,
     weight,
     codAmount,
-    exchange: exchange ? 'Yes' : 'No',
+    // exchange: exchange ? 'Yes' : 'No',
   };
 
   return emailjs.send(serviceID, templateID, templateParams, publicKey);
