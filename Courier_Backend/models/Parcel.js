@@ -58,10 +58,10 @@ const ParcelSchema = new Schema({
     type: Number,
     required: true,
   },
-  exchange: {
-    type: Boolean,
-    default: false,
-  },
+  // exchange: {
+  //   type: Boolean,
+  //   default: false,
+  // },
   dtype: {
     type: String,
     default: false,

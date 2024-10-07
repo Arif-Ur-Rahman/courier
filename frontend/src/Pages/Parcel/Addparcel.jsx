@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Sidebar from "../Shared/Sidebar";
+import Navbar from "../Shared/Navbar";
 import Swal from 'sweetalert2';
 import { sendUserConfirmationEmail, sendAdminNotificationEmail } from './utils'; // Import email functions
 
@@ -36,7 +37,7 @@ const Addparcel = () => {
     invoice: '',
     note: '',
     weight: 0,
-    exchange: false,
+    // exchange: false,
     dtype: 'home' // Default delivery type
   });
   
@@ -119,7 +120,7 @@ const Addparcel = () => {
         formData.raddress,
         formData.weight,
         formData.codAmount,
-        formData.exchange
+        // formData.exchange
       )
       .then(() => {
         console.log('User confirmation email sent successfully.');
@@ -142,7 +143,7 @@ const Addparcel = () => {
         formData.raddress,
         formData.weight,
         formData.codAmount,
-        formData.exchange
+        // formData.exchange
       )
       .then(() => {
         console.log('Admin notification email sent successfully.');
@@ -175,6 +176,8 @@ const Addparcel = () => {
   };
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="flex">
       <Sidebar />
       <div className="my-16 ml-52">
@@ -387,15 +390,7 @@ const Addparcel = () => {
             </div>
 
             {/* Exchange */}
-            <div className="flex items-center col-span-2">
-              <input 
-                type="checkbox" 
-                name="exchange" 
-                checked={formData.exchange} 
-                onChange={handleChange}
-                className="mr-2" />
-              <label className="text-gray-700">Exchange</label>
-            </div>
+          
           </div>
 
           {/* Submit Button */}
@@ -408,6 +403,7 @@ const Addparcel = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 
