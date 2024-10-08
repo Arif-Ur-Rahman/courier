@@ -5,8 +5,9 @@ import Sidebar from '../Shared/Sidebar';
 import Navbar from '../Shared/Navbar';
 import Pagination from '../../Pagination';
  
+ 
 
-const DataDisplay = () => {
+const ConsignmentDisplay = () => {
   const [consignments, setConsignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -48,16 +49,15 @@ const DataDisplay = () => {
       <div className="flex">
         <Sidebar />
         <div className="bg-gray-100 p-10">
-          <div className="mb-8 text-end">
+          <div className="mb-8 text-start font-semibold text-xl">
             <button
-              onClick={() => window.print()}
-              className="bg-green-500 text-white py-1 px-12 rounded hover:bg-green-600 mt-4"
+              
             >
-              Print
+              All Consignment
             </button>
           </div>
           <div className="p-8 bg-white shadow-sm">
-            <h2 className="text-xl mb-4 text-center font-bold">Imported Consignment ({consignments.length})</h2>
+           
             <table className="min-w-full printable-label">
               <thead>
                 <tr>
@@ -70,6 +70,7 @@ const DataDisplay = () => {
                   <th className="py-2">Weight</th>
                   <th className="py-2">S.Address</th>
                   <th className="py-2">R.Address</th>
+                  <th className='py-2'>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -85,6 +86,7 @@ const DataDisplay = () => {
                       <td className="py-2">{row.weight}</td>
                       <td className="py-2">{row.saddress}</td>
                       <td className="py-2">{row.raddress}</td>
+                      <td className="py-2"></td>
                     </tr>
                   ))
                 ) : (
@@ -112,4 +114,4 @@ const DataDisplay = () => {
   );
 };
 
-export default DataDisplay;
+export default ConsignmentDisplay;

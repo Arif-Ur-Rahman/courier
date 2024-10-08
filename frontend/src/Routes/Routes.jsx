@@ -14,6 +14,7 @@ import Pricing from "../components/Pricing/Pricing";
 import PricingCal from "../Pages/Pricing/PricingCal";
 import UploadPage from "../Pages/Bulk/Uploadpage";
 import DataDisplay from "../Pages/Bulk/DataDisplay";
+import ConsignmentDisplay from "../Pages/Consignments/ConsignmentDisplay";
  
 
  
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
           {
             path: 'imported',
             element: <DataDisplay></DataDisplay>
+          },
+          {
+            path: 'con-details',
+            element: <ConsignmentDisplay></ConsignmentDisplay>
           },
         ]
       }
