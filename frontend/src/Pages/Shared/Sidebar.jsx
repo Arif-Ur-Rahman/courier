@@ -21,7 +21,7 @@ const Sidebar = () => {
                     <ul className="menu p-4 w-80 h-full bg-black text-white space-y-2">
                         <li><a href="/userboard/userpage" className="text-lg">Dashboard</a></li>
                         <li><a href="/userboard/addparcel" className="text-lg">Add parcel</a></li>
-                        <li><a href="#settings" className="text-lg">Consignments</a></li>
+                        <li><a href="/userboard/con-details" className="text-lg">Consignments</a></li>
                         <li><a href="#reports" className="text-lg">Fraud check</a></li>
                         <li><a href="#reports" className="text-lg">Pickup Request</a></li>
                         <li><a href="/userboard/price" className="text-lg">Pricing</a></li>
