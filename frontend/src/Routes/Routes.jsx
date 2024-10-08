@@ -15,6 +15,7 @@ import PricingCal from "../Pages/Pricing/PricingCal";
 import UploadPage from "../Pages/Bulk/Uploadpage";
 import DataDisplay from "../Pages/Bulk/DataDisplay";
 import ConsignmentDisplay from "../Pages/Consignments/ConsignmentDisplay";
+import ConDetails from "../Pages/Consignments/ConDetails";
  
 
  
@@ -78,6 +79,11 @@ const router = createBrowserRouter([
           {
             path: 'con-details',
             element: <ConsignmentDisplay></ConsignmentDisplay>
+          },
+          {
+            path: 'con-unique/:id',
+            element: <ConDetails></ConDetails>
+
           },
         ]
       }
