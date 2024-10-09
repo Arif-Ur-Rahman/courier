@@ -16,6 +16,7 @@ import UploadPage from "../Pages/Bulk/Uploadpage";
 import DataDisplay from "../Pages/Bulk/DataDisplay";
 import ConsignmentDisplay from "../Pages/Consignments/ConsignmentDisplay";
 import ConDetails from "../Pages/Consignments/ConDetails";
+import UpdateParcel from "../Pages/Parcel/UpdateParcel";
  
 
  
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
           {
             path: 'addparcel',
             element: <Addparcel></Addparcel>
+          },
+          {
+            path: 'updateparcel/:id',
+            element: <UpdateParcel></UpdateParcel>
           },
           {
             path: 'label/:id',
