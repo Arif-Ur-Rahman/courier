@@ -180,9 +180,10 @@ const Addparcel = () => {
     <Navbar></Navbar>
     <div className="flex">
       <Sidebar />
-      <div className="my-16 ml-52">
+      <div className="bg-gray-100 p-8 w-screen">
+      <div className="my-6">
         <h1 className="text-center font-semibold text-5xl mb-8">Please Add Your Parcel</h1>
-        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+        <form onSubmit={handleSubmit} className="p-16 bg-white shadow-sm">
           <div className="grid grid-cols-2 gap-4">
             {/* Delivery Type */}
             <div className="flex col-span-2">
@@ -401,6 +402,7 @@ const Addparcel = () => {
             Submit
           </button>
         </form>
+      </div>
       </div>
     </div>
     </>

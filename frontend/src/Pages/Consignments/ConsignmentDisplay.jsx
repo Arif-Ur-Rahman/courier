@@ -4,10 +4,14 @@ import '../Parcel/label.css';
 import Sidebar from '../Shared/Sidebar';
 import Navbar from '../Shared/Navbar';
 import Pagination from '../../Pagination';
+import { Link } from 'react-router-dom';
+ 
+
  
  
 
 const ConsignmentDisplay = () => {
+
   const [consignments, setConsignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -86,7 +90,7 @@ const ConsignmentDisplay = () => {
                       <td className="py-2">{row.weight}</td>
                       <td className="py-2">{row.saddress}</td>
                       <td className="py-2">{row.raddress}</td>
-                      <td className="py-2"></td>
+                      <td className="py-2"><Link to={`/userboard/con-unique/${row._id}`}><button className="bg-gray-200 text-gray-800 px-4 py-2 rounded">Views</button></Link></td>
                     </tr>
                   ))
                 ) : (

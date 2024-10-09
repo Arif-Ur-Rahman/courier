@@ -47,3 +47,40 @@ exports.getConsignmentById = async (req, res) => {
             });
         }
     };
+//  consignment update by ID
+exports.updateConsignment = async (req, res) => {
+    const consignmentId = req.params.id;
+    const updates = req.body;
+    try {
+        const consignment = await Consignment.findByIdAndUpdate(consignmentId, updates, {
+            new: true,
+            runValidators: true,
+            context: 'query'
+        });
+        if (!consignment) {
+            return res.status(404).json({message: 'Consign not found.'});
+
+        }
+        res.status(200).json({
+            message: 'Consignment updated successfully.',consignment
+        });
+      
+
+         
+    } catch (error) {
+        console.error('Error updating consignment:', error);
+        // invalid objectError
+        if (error.kind === 'ObjectId') {
+            return res.status(400).json({ message: 'Invalid consignment ID.' });
+          }
+      
+          // Handle validation errors
+          if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(val => val.message);
+            return res.status(400).json({ message: 'Validation Error.', errors: messages });
+          }
+      
+          // Generic server error
+          res.status(500).json({ message: 'Server Error. Unable to update consignment.' });
+        }
+      };
