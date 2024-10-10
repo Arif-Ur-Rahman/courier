@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../Shared/Sidebar";
 import Navbar from "../Shared/Navbar";
+import Swal from "sweetalert2";
+// import withReactContent from "sweetalert2-react-content";
 
 const ConDetails = () => {
   const { id } = useParams(); //
   const [parcelData, setParcelData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch data from backend
@@ -22,6 +25,37 @@ const ConDetails = () => {
   if (!parcelData) {
     return <div>Loading...</div>;
   }
+  // Delete data from table based on Id
+  const handleDelete = async (_id) => {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await axios.delete(`http://localhost:5000/api/consignment/${_id}`);
+        Swal.fire(
+          'Deleted!',
+          'Your consignment has been deleted.',
+          'success'
+        );
+        navigate('/userboard/con-details');
+      } catch (error) {
+        console.error("Error deleting parcel:", error);
+        Swal.fire(
+          'Error!',
+          'Failed to delete the parcel. Please try again.',
+          'error'
+        );
+      }
+    }
+  };
 
   return (
     <>
@@ -59,7 +93,7 @@ const ConDetails = () => {
                     <p className="font-bold text-lg">COD: ৳ {parcelData.codAmount}</p>
                     <p className="text-red-500">{parcelData.status}</p>
                     <div className="mt-4 flex space-x-4">
-                  <button className="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                   <button onClick={()=> handleDelete(parcelData._id)} className="bg-red-500 text-white px-4 py-2 rounded">Delete</button> 
                   <p className="text-gray-500">{parcelData.status}</p>
                 </div>
                   </div>
