@@ -17,6 +17,7 @@ import DataDisplay from "../Pages/Bulk/DataDisplay";
 import ConsignmentDisplay from "../Pages/Consignments/ConsignmentDisplay";
 import ConDetails from "../Pages/Consignments/ConDetails";
 import UpdateParcel from "../Pages/Parcel/UpdateParcel";
+import HistoryDisplay from "../Pages/User/HistoryDisplay";
  
 
  
@@ -90,6 +91,11 @@ const router = createBrowserRouter([
             element: <ConDetails></ConDetails>
 
           },
+          // .........user 
+          {
+            path: 'user-history',
+            element: <HistoryDisplay></HistoryDisplay>
+          }
         ]
       }
        

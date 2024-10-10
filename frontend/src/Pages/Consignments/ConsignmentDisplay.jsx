@@ -90,7 +90,7 @@ const ConsignmentDisplay = () => {
                       <td className="py-2">{row.weight}</td>
                       <td className="py-2">{row.saddress}</td>
                       <td className="py-2">{row.raddress}</td>
-                      <td className="py-2"><Link to={`/userboard/con-unique/${row._id}`}><button className="bg-gray-200 text-gray-800 px-4 py-2 rounded">Views</button></Link></td>
+                      <td className="py-2"><Link to={`/userboard/con-unique/${row._id}`}><button className="bg-blue-600 text-white px-4 py-2 rounded">Views</button></Link></td>
                     </tr>
                   ))
                 ) : (
