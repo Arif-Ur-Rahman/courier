@@ -66,9 +66,9 @@ const ParcelSchema = new Schema({
     type: String,
     default: false,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  userEmail: { // New field to store user's email
+    type: String,
+    required: true,
   },
 
 });
