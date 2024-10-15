@@ -93,9 +93,10 @@ const router = createBrowserRouter([
           },
           // .........user 
           {
-            path: 'user-history',
+            path: 'user-history/:email',
             element: <HistoryDisplay></HistoryDisplay>
-          }
+          },
+         
         ]
       }
        

@@ -1,5 +1,5 @@
 const express = require('express');
-const { addParcel, getAllParcels, getParcelById, getParcelByUserId } = require('../controllers/parcelController');
+const { addParcel, getAllParcels, getParcelById, getParcelByUserEmail } = require('../controllers/parcelController');
 const router = express.Router();
 const { protect } = require('../middleware/authMiddleware');
 
@@ -7,9 +7,9 @@ const { protect } = require('../middleware/authMiddleware');
 router.post('/parcels', protect, addParcel);
 
 // Get all parcels (optional)
-// router.get('/parcels', protect, getAllParcels);
+router.get('/parcels', getAllParcels);
 router.get('/parcels/:id', getParcelById);
-router.get('parcels', protect, getParcelByUserId);
+router.get('/parcels/by-email/:email', getParcelByUserEmail); 
 
 module.exports = router;
  

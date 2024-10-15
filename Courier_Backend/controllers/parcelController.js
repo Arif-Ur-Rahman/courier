@@ -117,17 +117,25 @@ exports.getParcelById = async (req, res) => {
   }
 };
 
-// Find parcel based on user ID .......
-exports.getParcelByUserId = async (req, res) => {
+// Find parcel based on user Email .......
+exports.getParcelByUserEmail = async (req, res) => {
   try {
-    const parcels = await Parcel.find({ userEmail: req.user.email }).sort({ createdAt: -1});
-    res.json({ parcels });
-  } catch (error) {
-    console.error('Error fetching parcels:', error);
-    res.status(500).json({ message: 'Server error while fatching parcels'});
-  }
+    const userEmail = req.params.email;
+    const parcel = await Parcel.find({ userEmail: userEmail }); // Find parcel by email
 
+    if (!parcel) {
+      return res.status(404).json({ message: 'Parcel not found' });
+    }
+
+    res.status(200).json(parcel);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error fetching parcel',
+      error: error.message,
+    });
+  }
 }
+
 
  
 
