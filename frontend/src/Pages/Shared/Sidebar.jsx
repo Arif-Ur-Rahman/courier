@@ -18,7 +18,7 @@ const Sidebar = () => {
                 {/* Sidebar content */}
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 h-full bg-black text-white space-y-2">
+                    <ul className="menu p-4 w-64 h-full bg-black text-white space-y-2">
                         <li><a href="/userboard/userpage" className="text-lg">Dashboard</a></li>
                         <li><a href="/userboard/addparcel" className="text-lg">Add parcel</a></li>
                         <li><a href="/userboard/con-details" className="text-lg">Consignments</a></li>
@@ -27,6 +27,7 @@ const Sidebar = () => {
                         <li><a href="/userboard/price" className="text-lg">Pricing</a></li>
                         <li><a href="/userboard/fileup" className="text-lg">Bulk Print</a></li>
                         <li><a href="#reports" className="text-lg">Modarator</a></li>
+                        <li><a href="/userboard/user-history" className="text-lg">User History</a></li>
                     </ul>
                 </div>
             </div>

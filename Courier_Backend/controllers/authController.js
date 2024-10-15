@@ -2,6 +2,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
 
 dotenv.config();
 
@@ -37,29 +38,73 @@ const registerUser = async (req, res) => {
     }
 };
 
-// লগইন
+// // লগইন
+// const loginUser = async (req, res) => {
+//     const { email, password } = req.body;
+//     try {
+//         const user = await User.findOne({ email });
+//         if (!user) {
+//             return res.status(400).json({ message: 'Invalid credentials' });
+//         }
+
+//         const isMatch = await user.matchPassword(password);
+//         if (!isMatch) {
+//             return res.status(400).json({ message: 'Invalid credentials' });
+//         }
+
+//         const token = generateToken(user._id, user.role, user.name, user.email);
+
+//         res.json({
+//             token,
+//         });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Server Error' });
+//     }
+// };
+
+// module.exports = { registerUser, loginUser };
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
     try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid credentials' });
-        }
-
-        const isMatch = await user.matchPassword(password);
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Invalid credentials' });
-        }
-
-        const token = generateToken(user._id, user.role);
-
-        res.json({
-            token,
-        });
+      const { email, password } = req.body;
+  
+      // Find user by email
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(401).json({ message: 'Invalid email or password.' });
+      }
+  
+      // Compare passwords (assuming you're using bcrypt)
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(401).json({ message: 'Invalid email or password.' });
+      }
+  
+      // Generate JWT token with additional fields
+      const token = jwt.sign(
+        {
+          userId: user._id,
+          role: user.role,
+          name: user.name,    // Include name
+          email: user.email,  // Include email
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' }
+      );
+  
+      res.status(200).json({
+        message: 'Login successful.',
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        },
+      });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server Error' });
+      console.error('Login Error:', error);
+      res.status(500).json({ message: 'Server error during login.' });
     }
-};
-
-module.exports = { registerUser, loginUser };
+  };
+  module.exports = { registerUser, loginUser };

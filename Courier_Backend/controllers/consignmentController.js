@@ -1,6 +1,6 @@
 const Consignment = require('../models/Consignment');
 
-exports.addConsignment = async (req, res) => {
+addConsignment = async (req, res) => {
     try {
       const consignmentData = req.body; // Array of consignment objects
       console.log(consignmentData);
@@ -17,7 +17,7 @@ exports.addConsignment = async (req, res) => {
   
 
  
-exports.getAllConsignments = async (req, res) => {
+getAllConsignments = async (req, res) => {
     try {
         const consignments = await Consignment.find({});
         res.status(200).json(consignments);
@@ -30,7 +30,7 @@ exports.getAllConsignments = async (req, res) => {
 };
 
 // get consignment by ID;
-exports.getConsignmentById = async (req, res) => {
+getConsignmentById = async (req, res) => {
     try {
         const consignmentId = req.params.id;
         const consignment = await Consignment.findById(consignmentId);
@@ -48,7 +48,7 @@ exports.getConsignmentById = async (req, res) => {
         }
     };
 //  consignment update by ID
-exports.updateConsignment = async (req, res) => {
+updateConsignment = async (req, res) => {
     const consignmentId = req.params.id;
     const updates = req.body;
     try {
@@ -84,3 +84,32 @@ exports.updateConsignment = async (req, res) => {
           res.status(500).json({ message: 'Server Error. Unable to update consignment.' });
         }
       };
+
+deleteConsignment = async (req, res)=> {
+    const { id } = req.params;
+
+    try {
+        const deletedConsignment = await Consignment.findByIdAndDelete(id);
+        if ( !deletedConsignment) {
+            return res.status(404).json({ message: 'Consignment not found'});
+
+        }
+        res.status(200).json({ message: 'Consignment deleted successfully'});
+
+    } catch (error) {
+        console.error('Error deleting consignment:', error);
+        // Handle Invalid objectId error
+        if (error.kind === 'objectId') {
+            return res.status(400).json({ message: 'Invalid consignment ID'});
+        }
+        // Genaric server error
+        res.status(500).json({ message: 'Server Error. Unable to delete'})
+    }
+}
+module.exports = {
+    addConsignment,
+    getAllConsignments,
+    getConsignmentById,
+    updateConsignment,
+    deleteConsignment  
+  };
