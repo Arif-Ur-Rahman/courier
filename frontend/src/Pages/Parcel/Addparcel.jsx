@@ -1,11 +1,12 @@
 // Addparcel.jsx
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Sidebar from "../Shared/Sidebar";
 import Navbar from "../Shared/Navbar";
 import Swal from 'sweetalert2';
 import { sendUserConfirmationEmail, sendAdminNotificationEmail } from './utils'; // Import email functions
+import { AuthContext } from "../../contexts/AuthContext";
 
 const districts = [
   "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogura", "Brahmanbaria", 
@@ -22,6 +23,9 @@ const districts = [
 ];
 
 const Addparcel = () => {
+  const { user, token } = useContext(AuthContext);
+  console.log('ccccccccc', user);
+  console.log('xxxxx', user);
   const [formData, setFormData] = useState({
     sphone: '',
     rphone: '',
@@ -101,7 +105,13 @@ const Addparcel = () => {
     e.preventDefault();
     try {
       // Send POST request to add parcel
-      const response = await axios.post('http://localhost:5000/api/parcels', formData);
+      const response = await axios.post('http://localhost:5000/api/parcels', formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+    );
       console.log(response);
 
       const parcel = response.data.parcel;
