@@ -16,6 +16,10 @@ const consignmentSchema = new mongoose.Schema({
   note: { type: String },
   weight: { type: Number, required: true },
   dtype: { type: String, required: true },
+  userEmail: { // New field to store user's email
+    type: String,
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now }
 });
 

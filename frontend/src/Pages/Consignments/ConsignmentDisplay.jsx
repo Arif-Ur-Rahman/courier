@@ -60,6 +60,13 @@ const ConsignmentDisplay = () => {
               All Consignment
             </button>
           </div>
+          <div className="flex items-center gap-2 mb-4 ">
+                  <Link to='/userboard/con-details'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">All</button></Link>
+                  <button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Pending</button>
+                  <Link><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Approval Pending</button></Link>
+                  <Link><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Deliverd</button></Link>
+                  <Link><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Cancelled</button></Link>
+              </div>
           <div className="p-8 bg-white shadow-sm">
            
             <table className="min-w-full printable-label">

@@ -114,7 +114,7 @@ const Addparcel = () => {
     );
       console.log(response);
 
-      const parcel = response.data.parcel;
+      const parcel = response.data.consignment;
       console.log('Parcel ID:', parcel._id);
       
       // Send confirmation email to user

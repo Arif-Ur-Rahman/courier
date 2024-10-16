@@ -69,7 +69,7 @@ const ConDetails = () => {
                
               <div className="flex items-center gap-2 mb-4 ">
                   <button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Open Support Ticket</button>
-                  <button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Invoice</button>
+                  <Link to={`/userboard/invoice/${id}`}><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Invoice</button></Link>
                  <Link to={`/userboard/label/${id}`}><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Level</button></Link>
                   <Link to={`/userboard/updateparcel/${id}`}><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Edit</button></Link>
               </div>
