@@ -8,6 +8,7 @@ const parcelRoutes = require('./routes/parcelRoutes');
 const priceRouts = require('./routes/pricingRoutes');
 const parcelpriceRoutes = require('./routes/parcelpriceRoutes');
 const consignmentRoutes = require('./routes/consignmentRoutes');
+const userRoutes = require('./routes/userRoutes');
 dotenv.config();
 
 // ডাটাবেস কানেকশন
@@ -30,6 +31,7 @@ app.use('/api', parcelRoutes);
 app.use('', priceRouts);
 app.use('', parcelpriceRoutes);
 app.use('/api', consignmentRoutes);
+app.use('/api', userRoutes);
 
 // হেলথ চেক রাউট
 app.get('/', (req, res) => {

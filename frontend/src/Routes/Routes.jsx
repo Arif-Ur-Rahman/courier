@@ -20,6 +20,7 @@ import HistoryDisplay from "../Pages/User/HistoryDisplay";
 import AdminDashboard from "../Admin_Panel/AdminDashboard";
 import Apage from "../Admin_Panel/Apage";
 import UserDisplay from "../Admin_Panel/Pages/UserDisplay";
+import UpdateUser from "../Admin_Panel/Pages/User/Updateuser";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
           {
             path: 'user-display',
             element: <UserDisplay></UserDisplay>
+          },
+          {
+            path: 'update-user/:id',
+            element: <UpdateUser></UpdateUser>
           },
         ],
       },
