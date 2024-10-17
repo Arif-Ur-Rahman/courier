@@ -98,7 +98,7 @@ const UserDisplay = () => {
                                         <Link to={`/adminboard/update-user/${user._id}`}><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Edit</button></Link>
                                         </td>
                                         <td className="py-2 px-4 text-left border-b">
-                                        <button onClick={()=> handleDelete(user._id)} className="bg-red-500 text-white px-4 py-2 rounded">Delete</button> 
+                                        <button onClick={()=> handleDelete(user._id)} className="bg-red-500 text-white px-3 py-1 rounded-sm font-medium">Delete</button> 
                                         </td>
                                     </tr>
                                 ))}
