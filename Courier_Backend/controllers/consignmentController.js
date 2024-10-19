@@ -17,17 +17,36 @@ addConsignment = async (req, res) => {
   
 
  
+// getAllConsignments = async (req, res) => {
+//     try {
+//         const consignments = await Consignment.find({});
+//         res.status(200).json(consignments);
+//     } catch (error) {
+//         res.status(500).json({
+//             message: 'Error fetching consignment',
+//             error: error.message,
+//         });
+//     }
+// };
 getAllConsignments = async (req, res) => {
     try {
-        const consignments = await Consignment.find({});
+        const { status } = req.query;
+        console.log("Status filter:", status);  // Check if 'pending' is passed correctly
+
+        const query = status ? { status } : {};
+        const consignments = await Consignment.find(query);
+        console.log("Consignments:", consignments); // See what is returned from the DB
+
         res.status(200).json(consignments);
     } catch (error) {
         res.status(500).json({
-            message: 'Error fetching consignment',
+            message: 'Error fetching consignments',
             error: error.message,
         });
     }
 };
+
+
 
 // get consignment by ID;
 getConsignmentById = async (req, res) => {
@@ -105,11 +124,33 @@ deleteConsignment = async (req, res)=> {
         // Genaric server error
         res.status(500).json({ message: 'Server Error. Unable to delete'})
     }
-}
+};
+
+approveConsignment = async (req, res) => {
+    try {
+      const parcel = await Consignment.findByIdAndUpdate(req.params.id, { status: 'approved' }, { new: true });
+      res.json(parcel);
+    } catch (error) {
+      res.status(500).json({ message: 'Error approving parcel' });
+    }
+  };
+
+  rejectConsignment = async (req, res) => {
+    try {
+        const parcel = await Consignment.findByIdAndUpdate(req.params.id, { status: 'cancelled' }, { new: true });
+        res.json(parcel);
+      } catch (error) {
+        res.status(500).json({ message: 'Error rejected parcel' });
+      }
+    };
+  
+  
 module.exports = {
     addConsignment,
     getAllConsignments,
     getConsignmentById,
     updateConsignment,
-    deleteConsignment  
+    deleteConsignment,
+    approveConsignment,
+    rejectConsignment  
   };

@@ -21,6 +21,9 @@ import AdminDashboard from "../Admin_Panel/AdminDashboard";
 import Apage from "../Admin_Panel/Apage";
 import UserDisplay from "../Admin_Panel/Pages/UserDisplay";
 import UpdateUser from "../Admin_Panel/Pages/User/Updateuser";
+import PendingParcel from "../Admin_Panel/Pages/Status/PendingParcel";
+import ApprovalParcel from "../Pages/Consignments/ApprovalParcel";
+import CancellParcel from "../Pages/Consignments/CancellParcel";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +95,14 @@ const router = createBrowserRouter([
             path: "user-history/:email",
             element: <HistoryDisplay />,
           },
+          {
+            path: 'approval',
+            element: <ApprovalParcel></ApprovalParcel>
+          },
+          {
+            path: 'reject',
+            element: <CancellParcel></CancellParcel>,
+          },
         ],
       },
       // Admin routes..................part
@@ -110,6 +121,10 @@ const router = createBrowserRouter([
           {
             path: 'update-user/:id',
             element: <UpdateUser></UpdateUser>
+          },
+          {
+            path: 'pending',
+            element: <PendingParcel></PendingParcel>,
           },
         ],
       },

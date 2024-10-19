@@ -62,42 +62,59 @@ const ConsignmentDisplay = () => {
           </div>
           <div className="flex items-center gap-2 mb-4 ">
                   <Link to='/userboard/con-details'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">All</button></Link>
-                  <button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Pending</button>
-                  <Link><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Approval Pending</button></Link>
+                  <Link to='/adminboard/pending'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Pending</button></Link>
+                  <Link to='/userboard/approval'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Approval Pending</button></Link>
                   <Link><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Deliverd</button></Link>
-                  <Link><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Cancelled</button></Link>
+                  <Link to='/userboard/reject'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Cancelled</button></Link>
+                
               </div>
           <div className="p-8 bg-white shadow-sm">
            
             <table className="min-w-full printable-label">
               <thead>
                 <tr>
-                  <th className="py-2">Id</th>
-                  <th className="py-2">Invoice</th>
-                  <th className="py-2">Delivary Type</th>
-                  <th className="py-2">Sender Name</th>
-                  <th className="py-2">Reciever Name</th>
-                  <th className="py-2">Cod Amount</th>
-                  <th className="py-2">Weight</th>
-                  <th className="py-2">S.Address</th>
-                  <th className="py-2">R.Address</th>
-                  <th className='py-2'>Details</th>
+                  <th className="py-2 px-2 text-left border-b">Id</th>
+                  <th className="py-2 px-2 text-left border-b">Invoice</th>
+                  <th className="py-2 px-2 text-left border-b">Delivary Type</th>
+                  {/* <th className="py-2 px-2 text-left border-b">Sender Name</th> */}
+                  <th className="py-2 px-2 text-left border-b">Reciever Name</th>
+                  <th className="py-2 px-2 text-left border-b">Cod Amount</th>
+                  <th className="py-2 px-2 text-left border-b">Weight</th>
+                  {/* <th className="py-2 px-2 text-left border-b">S.Address</th> */}
+                  <th className="py-2 px-2 text-left border-b">R.Address</th>
+                  <th className='py-2 px-2 text-left border-b'>Status</th>
+                  <th className='py-2 px-2 text-left border-b'>Details</th>
+               
                 </tr>
               </thead>
               <tbody>
                 {currentItems.length > 0 ? (
                   currentItems.map((row, index) => (
                     <tr key={index} className="border-t">
-                      <td className="py-2">{row._id}</td>
-                      <td className="py-2">{row.invoice}</td>
-                      <td className="py-2">{row.dtype}</td>
-                      <td className="py-2">{row.sname}</td>
-                      <td className="py-2">{row.rname}</td>
-                      <td className="py-2">{row.codAmount}</td>
-                      <td className="py-2">{row.weight}</td>
-                      <td className="py-2">{row.saddress}</td>
-                      <td className="py-2">{row.raddress}</td>
-                      <td className="py-2"><Link to={`/userboard/con-unique/${row._id}`}><button className="bg-blue-600 text-white px-4 py-2 rounded">Views</button></Link></td>
+                      <td className="py-2 px-2 text-left border-b">{row._id}</td>
+                      <td className="py-2 px-2 text-left border-b">{row.invoice}</td>
+                      <td className="py-2 px-2 text-left border-b">{row.dtype}</td>
+                      {/* <td className="py-2 px-2 text-left border-b">{row.sname}</td> */}
+                      <td className="py-2 px-2 text-left border-b">{row.rname}</td>
+                      <td className="py-2 px-2 text-left border-b">{row.codAmount}</td>
+                      <td className="py-2 px-2 text-left border-b">{row.weight}</td>
+                      {/* <td className="py-2 px-2 text-left border-b">{row.saddress}</td> */}
+                      <td className="py-2 px-2 text-left border-b">{row.raddress}</td>
+                      <td className="py-2 px-2 text-left border-b">
+                     <span
+                     className={`px-2 py-1 rounded-lg ${
+                       row.status === 'pending'
+                         ? 'bg-yellow-800 text-white'
+                         : row.status === 'approved'
+                         ? 'bg-green-800 text-white'
+                         : row.status === 'cancelled'
+                         ? 'bg-red-800 text-white'
+                         : ''
+                     }`}
+                   >
+                     {row.status}
+                   </span></td>
+                      <td className="py-2 px-2 text-left border-b"><Link to={`/userboard/con-unique/${row._id}`}><button className="bg-blue-600 text-white px-2 py-1 rounded">Views</button></Link></td>
                     </tr>
                   ))
                 ) : (
