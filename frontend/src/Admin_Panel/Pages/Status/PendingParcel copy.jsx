@@ -1,0 +1,127 @@
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import ASidebar from '../../Shared/Asidebar';
+import Navbar from '../../../Pages/Shared/Navbar';
+import { AuthContext } from '../../../contexts/AuthContext';
+
+const PendingParcel = () => {
+  const {user, token} = useContext(AuthContext);
+  const [parcels, setParcels] = useState([]);
+
+  console.log('jjjjjj', user);
+  console.log('kkkkkk', token);
+
+  useEffect(() => {
+    const fetchParcels = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/consignment?status=pending');
+        console.log('Fetched pending parcels:', response);
+        if (Array.isArray(response.data)) {
+          setParcels(response.data);  // Ensure it's an array
+        } else {
+          console.error('Unexpected response format:', response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching parcels', error);
+      }
+    };
+
+    fetchParcels();
+  }, []);
+
+  const approveParcel = async (parcelId) => {
+    try {
+      const response = await axios.patch(`http://localhost:5000/api/consignment/${parcelId}/approve`);
+      console.log('Parcel approved:', response.data);
+      setParcels(parcels.filter(parcel => parcel._id !== parcelId)); // Remove approved parcel from pending list
+    } catch (error) {
+      console.error('Error approving parcel', error);
+    }
+  };
+  const rejectParcel = async (parcelId) => {
+    try {
+      const response = await axios.patch(`http://localhost:5000/api/consignment/${parcelId}/reject`);
+      console.log('Parcel Reject:', response.data);
+      setParcels(parcels.filter(parcel => parcel._id !== parcelId));  
+    } catch (error) {
+      console.error('Error Rejected parcel', error);
+    }
+  };
+
+  return (
+    <>
+      <Navbar></Navbar>
+      <div className="flex">
+        <ASidebar></ASidebar>
+        <div className="p-8 bg-gray-100 w-screen">
+          <h2 className="text-xl font-bold mb-6">Pending Parcels</h2>
+          <div className="flex items-center gap-2 mb-4 ">
+                  <Link to='/userboard/con-details'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">All</button></Link>
+                  <Link to='/adminboard/pending'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Pending</button></Link>
+                  <Link to='/userboard/approval'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Approval Pending</button></Link>
+                  <Link><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Deliverd</button></Link>
+                  <Link to='/userboard/reject'><button className="bg-green-500 px-3 py-1 text-white rounded-sm font-medium">Cancelled</button></Link>
+                  
+              </div>
+          <div className="bg-white shadow-sm p-8">
+            <table className="min-w-full printable-label">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 text-left border-b">Sender Name</th>
+                  <th className="py-2 px-4 text-left border-b">Receiver Name</th>
+                  <th className="py-2 px-4 text-left border-b">COD Amount</th>
+                  <th className="py-2 px-4 text-left border-b">Status</th>
+                  {user.role === 'Admin' && (
+                  <th className="py-2 px-4 text-left border-b">Details</th>
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {parcels.length > 0 ? (
+                  parcels.map(parcel => (
+                    <tr key={parcel._id} className="border-t">
+                      <td className="py-2 px-4 text-left border-b">{parcel.sname}</td>
+                      <td className="py-2 px-4 text-left border-b">{parcel.rname}</td>
+                      <td className="py-2 px-4 text-left border-b">{parcel.codAmount}</td>
+                      <td className="py-2 px-4 text-left border-b"><span className='px-2 py-1 rounded-lg bg-yellow-800 text-white'>{parcel.status}</span></td>
+                      <td className="py-2 px-4 text-left border-b">
+                        {/* Show approve and reject button only if user is Admin */}
+                        {user.role === 'Admin' && (
+                            <div className="space-x-2">
+                                    <button
+                                    className="bg-green-600 text-white py-1 px-2 text-left border-b rounded"
+                                    onClick={() => approveParcel(parcel._id)}
+                                >
+                                    Approve
+                                </button>
+                                    <button
+                                    className="bg-red-600 text-white py-1 px-2 text-left border-b rounded"
+                                    onClick={() => rejectParcel(parcel._id)}
+                                >
+                                    Reject
+                                </button>
+                            </div>
+
+                       
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="5" className="text-center py-4">
+                      No pending parcels available.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default PendingParcel;
