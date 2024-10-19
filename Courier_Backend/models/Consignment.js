@@ -20,6 +20,11 @@ const consignmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    enum: ['pending', 'approved', 'delivered', 'cancelled'],
+    default: 'pending'
+  },
   createdAt: { type: Date, default: Date.now }
 });
 

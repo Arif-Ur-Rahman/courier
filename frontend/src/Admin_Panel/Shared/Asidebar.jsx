@@ -27,7 +27,7 @@ const ASidebar = () => {
                     <ul className="menu p-4 w-64 h-full bg-black text-white space-y-2">
                         <li><a href="/adminboard/adminpage" className="text-lg">Dashboard</a></li>
                         <li><a href="/adminboard/user-display" className="text-lg">User Handle</a></li>
-                     
+                        <li><a href="/adminboard/pending" className="text-lg">Pending Parcels</a></li>
  
 
                   
