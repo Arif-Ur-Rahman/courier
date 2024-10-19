@@ -18,7 +18,8 @@
   //   });
   // }
   // controllers/parcelController.js
-  const Parcel = require('../models/Parcel');
+  // const Parcel = require('../models/Parcel');
+  const Consignment = require('../models/Consignment');
 
   // Controller to add a parcel
   exports.addParcel = async (req, res) => {
@@ -52,7 +53,7 @@
         return res.status(400).json({ message: 'Please provide all required fields.' });
       }
   
-      const newParcel = new Parcel({
+      const newConsignment = new Consignment({
         sphone,
         rphone,
         sname,
@@ -72,9 +73,9 @@
         userEmail: req.user.email, // Ensure req.user is populated
       });
   
-      const savedParcel = await newParcel.save();
+      const savedConsignment = await newConsignment.save();
   
-      res.status(201).json({ parcel: savedParcel });
+      res.status(201).json({ consignment: savedConsignment });
     } catch (error) {
       console.error('Error adding parcel:', error);
       res.status(500).json({ message: 'Server error while adding parcel.', error: error.message });
@@ -87,7 +88,7 @@
 // Controller to get all parcels (optional)
 exports.getAllParcels = async (req, res) => {
   try {
-    const parcels = await Parcel.find({});
+    const parcels = await Consignment.find({});
     res.status(200).json(parcels);
   } catch (error) {
     res.status(500).json({
@@ -102,7 +103,7 @@ exports.getAllParcels = async (req, res) => {
 exports.getParcelById = async (req, res) => {
   try {
     const parcelId = req.params.id;
-    const parcel = await Parcel.findById(parcelId);
+    const parcel = await Consignment.findById(parcelId);
 
     if (!parcel) {
       return res.status(404).json({ message: 'Parcel not found' });
@@ -121,13 +122,13 @@ exports.getParcelById = async (req, res) => {
 exports.getParcelByUserEmail = async (req, res) => {
   try {
     const userEmail = req.params.email;
-    const parcel = await Parcel.find({ userEmail: userEmail }); // Find parcel by email
+    const consignment = await Consignment.find({ userEmail: userEmail }); // Find parcel by email
 
-    if (!parcel) {
+    if (!consignment) {
       return res.status(404).json({ message: 'Parcel not found' });
     }
 
-    res.status(200).json(parcel);
+    res.status(200).json(consignment);
   } catch (error) {
     res.status(500).json({
       message: 'Error fetching parcel',

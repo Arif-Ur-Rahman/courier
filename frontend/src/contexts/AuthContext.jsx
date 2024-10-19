@@ -22,6 +22,7 @@ const AuthProvider = ({ children }) => {
       setUser({
         username: decoded.username || decoded.name, // Use 'username' or fallback to 'name'
         email: decoded.email,
+        role: decoded.role,
       });
       setToken(token); // Store token in state
     } catch (error) {

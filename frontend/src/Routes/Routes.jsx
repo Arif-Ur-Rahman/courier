@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
- 
- 
+
 import Hompage from "../Pages/Hompage";
 import Home from "../components/Home";
 import HomeCover from "../components/HomeCover";
@@ -18,92 +17,104 @@ import ConsignmentDisplay from "../Pages/Consignments/ConsignmentDisplay";
 import ConDetails from "../Pages/Consignments/ConDetails";
 import UpdateParcel from "../Pages/Parcel/UpdateParcel";
 import HistoryDisplay from "../Pages/User/HistoryDisplay";
- 
-
- 
+import AdminDashboard from "../Admin_Panel/AdminDashboard";
+import Apage from "../Admin_Panel/Apage";
+import UserDisplay from "../Admin_Panel/Pages/UserDisplay";
+import UpdateUser from "../Admin_Panel/Pages/User/Updateuser";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: <Home />,
     children: [
       {
-        
-            path: "/",
-            element: <HomeCover></HomeCover>,
+        path: "/",
+        element: <HomeCover />,
       },
       {
-        path: 'login',
-        element: <Login></Login>
+        path: "login",
+        element: <Login />,
       },
       {
-        path: '/signup',
-        element: <Signup></Signup>,
+        path: "signup",
+        element: <Signup />,
       },
       {
-        path: '/pricing',
-        element: <Pricing></Pricing>
+        path: "pricing",
+        element: <Pricing />,
       },
-      // User Panel routes..............bellow
+      // User routes part..............
       {
-        path:'/userboard',
-        element: <UserDashboard></UserDashboard>,
+        path: "userboard",
+        element: <UserDashboard />,
         children: [
           {
-            path: 'userpage',
-            element: <Hompage></Hompage>,
+            path: "userpage",
+            element: <Hompage />,
           },
           {
-            path: 'addparcel',
-            element: <Addparcel></Addparcel>
+            path: "addparcel",
+            element: <Addparcel />,
           },
           {
-            path: 'updateparcel/:id',
-            element: <UpdateParcel></UpdateParcel>
+            path: "updateparcel/:id",
+            element: <UpdateParcel />,
           },
           {
-            path: 'label/:id',
-            element: <Label></Label>
+            path: "label/:id",
+            element: <Label />,
           },
           {
-            path: 'invoice/:id',
-            element: <Invoice></Invoice>
-
+            path: "invoice/:id",
+            element: <Invoice />,
           },
           {
-            path: 'price',
-            element: <PricingCal></PricingCal>,
+            path: "price",
+            element: <PricingCal />,
           },
           {
-            path: 'fileup',
-            element: <UploadPage></UploadPage>
+            path: "fileup",
+            element: <UploadPage />,
           },
           {
-            path: 'imported',
-            element: <DataDisplay></DataDisplay>
+            path: "imported",
+            element: <DataDisplay />,
           },
           {
-            path: 'con-details',
-            element: <ConsignmentDisplay></ConsignmentDisplay>
+            path: "con-details",
+            element: <ConsignmentDisplay />,
           },
           {
-            path: 'con-unique/:id',
-            element: <ConDetails></ConDetails>
-
+            path: "con-unique/:id",
+            element: <ConDetails />,
           },
-          // .........user 
           {
-            path: 'user-history/:email',
-            element: <HistoryDisplay></HistoryDisplay>
+            path: "user-history/:email",
+            element: <HistoryDisplay />,
           },
-         
-        ]
-      }
-       
+        ],
+      },
+      // Admin routes..................part
+      {
+        path: "adminboard",
+        element: <AdminDashboard />,
+        children: [
+          {
+            path: "adminpage",
+            element: <Apage />,
+          },
+          {
+            path: 'user-display',
+            element: <UserDisplay></UserDisplay>
+          },
+          {
+            path: 'update-user/:id',
+            element: <UpdateUser></UpdateUser>
+          },
+        ],
+      },
     ],
   },
 ]);
 
 export default router;
-
-      

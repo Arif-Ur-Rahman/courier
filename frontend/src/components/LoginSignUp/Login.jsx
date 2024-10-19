@@ -18,7 +18,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [disable, setDisable] = useState(true); // Initialize disable state
 
-  const { login } = useContext(AuthContext); // Access the login function from context
+  const { login, user, token } = useContext(AuthContext); // Access the login function from context
   const navigate = useNavigate();
 
   // Initialize captcha on component mount
@@ -47,7 +47,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
+  
     try {
       setLoading(true);
       // Replace with your backend login endpoint
@@ -55,15 +55,20 @@ const Login = () => {
         email: formData.email,
         password: formData.password,
       });
-
+  
       // Assuming the backend returns a token and user data
       const { token, user } = response.data;
-
+  
       // Update the AuthContext with the token and user data
       login(token, user);
-
-      // Redirect to the user dashboard or desired page
-      navigate('/userboard/userpage');
+      console.log('user.....role:', user.role);
+      // Redirect based on the user role
+      if (user.role === 'Admin') { // 'Admin' should be a string
+        navigate('/adminboard/adminpage');
+      } else {
+        navigate('/userboard/userpage');
+      }
+  
     } catch (err) {
       console.error(err);
       // Handle errors returned from the backend
@@ -76,6 +81,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div
