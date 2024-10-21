@@ -46,6 +46,10 @@ const UploadPage = () => {
         // Include userEmail in the data
         const dataWithUserEmail = sheetData.map((row) => ({
           ...row,
+          sname: user.username,  // Add the sname field
+          sphone: user.number,
+          semail: user.email,
+          saddress: user.address,
           userEmail: user.email // Add userEmail from AuthContext to each row
         }));
   

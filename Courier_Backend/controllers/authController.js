@@ -13,7 +13,7 @@ const generateToken = (userId, role) => {
 
 // রেজিস্ট্রেশন
 const registerUser = async (req, res) => {
-    const { name, email, password, role } = req.body;
+    const { name, email,number, address, bname, password, role } = req.body;
     try {
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -23,6 +23,9 @@ const registerUser = async (req, res) => {
         const user = await User.create({
             name,
             email,
+            number,
+            address,
+            bname,
             password,
             role,
         });
@@ -87,6 +90,9 @@ const loginUser = async (req, res) => {
           role: user.role,
           name: user.name,    // Include name
           email: user.email,  // Include email
+          number: user.number,
+          address: user.address,
+          bname: user.bname,
         },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
@@ -99,6 +105,9 @@ const loginUser = async (req, res) => {
           id: user._id,
           name: user.name,
           email: user.email,
+          number: user.number,
+          address: user.address,
+          bname: user.bname,
           role: user.role,
         },
       });

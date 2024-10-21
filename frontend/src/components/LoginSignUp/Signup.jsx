@@ -1,6 +1,6 @@
 // Signup.jsx
 import React, { useState } from "react";
-import axios from "axios";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import emailjs from '@emailjs/browser'; // Import EmailJS
@@ -9,6 +9,9 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    number: "",
+    address: "",
+    bname: "",
     password: "",
     confirmPassword: "",
   });
@@ -57,6 +60,9 @@ const Signup = () => {
       const response = await axios.post('http://localhost:5000/api/auth/register', {
         name: formData.name,
         email: formData.email,
+        number: formData.number,
+        address: formData.address,
+        bname: formData.bname,
         password: formData.password,
         // role: 'user', // Optional: Include if your backend requires a role
       });
@@ -142,6 +148,53 @@ const Signup = () => {
               required
             />
           </div>
+          {/* tahsif new  */}
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-black">
+              Phone Number
+            </label>
+            <input
+              placeholder="Enter your number"
+              type="number"
+              name="number"
+              id="number"
+              value={formData.number}
+              onChange={handleChange}
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-black">
+              Address of Pickup Location
+            </label>
+            <input
+              placeholder="Enter your address"
+              type="text"
+              name="address"
+              id="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-black">
+              Business Name
+            </label>
+            <input
+              placeholder="Enter your name"
+              type="text"
+              name="bname"
+              id="bname"
+              value={formData.bname}
+              onChange={handleChange}
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              required
+            />
+          </div>
+          {/* tahsif end */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-black">
               Password
