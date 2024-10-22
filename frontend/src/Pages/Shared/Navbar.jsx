@@ -83,7 +83,7 @@ const Navbar = () => {
                 className="mt-2 p-2 shadow menu menu-compact dropdown-content bg-black text-white rounded-box w-52"
               >
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/userboard/profile">Profile</Link>
                 </li>
                 <li>
                   <button onClick={handleLogout} className="w-full text-left">
@@ -162,7 +162,7 @@ const Navbar = () => {
                 className="mt-2 p-2 shadow menu menu-compact dropdown-content bg-black rounded-box w-52"
               >
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/userboard/profile">Profile</Link>
                 </li>
                 <li>
                   <button onClick={handleLogout} className="w-full text-left">

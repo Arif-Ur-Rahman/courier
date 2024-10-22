@@ -149,7 +149,7 @@ function Navbar() {
                 className="mt-2 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/userboard/profile">Profile</Link>
                 </li>
                 <li>
                   <Link to="/userboard/userpage">Dashboard</Link>
