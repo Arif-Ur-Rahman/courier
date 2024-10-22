@@ -24,6 +24,7 @@ import UpdateUser from "../Admin_Panel/Pages/User/Updateuser";
 import PendingParcel from "../Admin_Panel/Pages/Status/PendingParcel";
 import ApprovalParcel from "../Pages/Consignments/ApprovalParcel";
 import CancellParcel from "../Pages/Consignments/CancellParcel";
+import Profile from "../components/userProfile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
             path: 'reject',
             element: <CancellParcel></CancellParcel>,
           },
+          {
+            path: 'profile',
+            element: <Profile />,
+          }
         ],
       },
       // Admin routes..................part
