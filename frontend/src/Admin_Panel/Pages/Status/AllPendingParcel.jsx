@@ -7,32 +7,32 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import Swal from 'sweetalert2';
 import Sidebar from '../../../Pages/Shared/Sidebar';
 
-const PendingParcel = () => {
+const AllPendingParcel = () => {
     const { user, token } = useContext(AuthContext);
     const [parcels, setParcels] = useState([]);
   
     console.log('jjjjjj', user);
     console.log('kkkkkk', token);
   
-    // useEffect(() => {
-    //   const fetchParcels = async () => {
-    //     try {
+    useEffect(() => {
+      const fetchParcels = async () => {
+        try {
      
-    //       // const response = await axios.get('http://localhost:5000/api/consignment?status=pending');
-    //       const response = await axios.get(`http://localhost:5000/api/consignment?status=pending&userEmail=${user?.email}`);
-    //       console.log('Fetched pending parcels:', response);
-    //       if (Array.isArray(response.data)) {
-    //         setParcels(response.data);  // Ensure it's an array
-    //       } else {
-    //         console.error('Unexpected response format:', response.data);
-    //       }
-    //     } catch (error) {
-    //       console.error('Error fetching parcels', error);
-    //     }
-    //   };
+          // const response = await axios.get('http://localhost:5000/api/consignment?status=pending');
+          const response = await axios.get(`http://localhost:5000/api/consignment?status=pending&userEmail=${user?.email}`);
+          console.log('Fetched pending parcels:', response);
+          if (Array.isArray(response.data)) {
+            setParcels(response.data);  // Ensure it's an array
+          } else {
+            console.error('Unexpected response format:', response.data);
+          }
+        } catch (error) {
+          console.error('Error fetching parcels', error);
+        }
+      };
   
-    //   fetchParcels();
-    // }, []);
+      fetchParcels();
+    }, []);
     
     //   const fetchParcels = async () => {
     //     try {
@@ -59,33 +59,7 @@ const PendingParcel = () => {
     //   fetchParcels();
     // }, [user, token]);  // Ensure useEffect runs when user or token changes
     
-  useEffect(() => {
-  const fetchParcels = async () => {
-    try {
-      console.log('User:', user);  // Log the user object to see if it's available
-      if (user?.email) {  // Ensure user is logged in and email is available
-        const response = await axios.get(`http://localhost:5000/api/consignment?status=pending&userEmail=${user.email}&role=${user.role}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,  // Pass the token in the request headers if needed for authentication
-          },
-        });
-        console.log('Fetched pending parcels:', response);
-        if (Array.isArray(response.data)) {
-          setParcels(response.data);  // Ensure it's an array
-        } else {
-          console.error('Unexpected response format:', response.data);
-        }
-      } else {
-        console.error('User is not logged in or user email is undefined');
-      }
-    } catch (error) {
-      console.error('Error fetching parcels', error);
-    }
-  };
-
-  fetchParcels();
-}, [user, token]);  // Ensure useEffect runs when user or token changes
-
+  
     const approveParcel = async (parcelId) => {
       try {
         const response = await axios.patch(`http://localhost:5000/api/consignment/${parcelId}/approve`);
@@ -209,4 +183,4 @@ const PendingParcel = () => {
   };
   
 
-export default PendingParcel;
+export default AllPendingParcel;

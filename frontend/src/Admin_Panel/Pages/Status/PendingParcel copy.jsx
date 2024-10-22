@@ -64,7 +64,7 @@ const PendingParcel = () => {
     try {
       console.log('User:', user);  // Log the user object to see if it's available
       if (user?.email) {  // Ensure user is logged in and email is available
-        const response = await axios.get(`http://localhost:5000/api/consignment?status=pending&userEmail=${user.email}&role=${user.role}`, {
+        const response = await axios.get(`http://localhost:5000/api/consignment?status=pending&userEmail=${user.email}`, {
           headers: {
             Authorization: `Bearer ${token}`,  // Pass the token in the request headers if needed for authentication
           },

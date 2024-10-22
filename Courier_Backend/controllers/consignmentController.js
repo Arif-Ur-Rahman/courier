@@ -1,4 +1,6 @@
 const Consignment = require('../models/Consignment');
+const { protect } = require('../middleware/authMiddleware');
+
 
 addConsignment = async (req, res) => {
     try {
@@ -30,12 +32,21 @@ addConsignment = async (req, res) => {
 // };
 getAllConsignments = async (req, res) => {
     try {
-        const { status } = req.query;
-        console.log("Status filter:", status);  // Check if 'pending' is passed correctly
+        const { status, userEmail, role } = req.query; // Get both status and userEmail from query
+        console.log("Status filter:", status);  // Debugging status filter
+        console.log("UserEmail filter:", userEmail); // Debugging userEmail filter
+        console.log("UserRole filter:", role);
 
-        const query = status ? { status } : {};
+        // Build the query object to filter by status and userEmail
+        const query = {};
+        if (status) query.status = status;
+        if(role !== "Admin"){
+            if (userEmail) query.userEmail = userEmail;
+        }
+          // Only get consignments for the logged-in user
+
         const consignments = await Consignment.find(query);
-        console.log("Consignments:", consignments); // See what is returned from the DB
+        console.log("Filtered consignments:", consignments);  // See what is returned from the DB
 
         res.status(200).json(consignments);
     } catch (error) {
@@ -45,8 +56,6 @@ getAllConsignments = async (req, res) => {
         });
     }
 };
-
-
 
 // get consignment by ID;
 getConsignmentById = async (req, res) => {

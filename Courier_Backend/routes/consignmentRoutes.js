@@ -1,6 +1,7 @@
 const express = require('express');
 const { addConsignment, getAllConsignments, getConsignmentById, updateConsignment, deleteConsignment, approveConsignment, rejectConsignment } = require('../controllers/consignmentController');
 const router = express.Router();
+const { protect } = require('../middleware/authMiddleware');
 
 // Add a new consignment
 router.post('/consignment', addConsignment);
