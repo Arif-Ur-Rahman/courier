@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Barcode from 'react-barcode';
 import QRCode from 'react-qr-code';
@@ -7,9 +7,11 @@ import logo from '../../assets/logo.jpg';
 import './label.css';
 import Sidebar from '../Shared/Sidebar';
 import Navbar from '../Shared/Navbar';
+import { AuthContext } from '../../contexts/AuthContext';
  
 
 const Invoice = () => {
+    const { user, token } = useContext(AuthContext);
     const { id } = useParams();
     const [parcelData, setParcelData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -115,8 +117,13 @@ const Invoice = () => {
                                 {/* Company Logo */}
                                 <img src={logo} alt="Company Logo" className="h-16 w-16 object-cover" />
                                 <div className="flex flex-col">
-                                    <span className="font-semibold text-xl">01610273172</span>
-                                    <span className="text-gray-500">Rampura, Dhaka</span>
+                                    <span className="text-xl"> Name: <strong>{sname}</strong></span>
+                                    <span className="text-xl"> Name: <strong>{sphone}</strong></span>
+                                    <span className="text-gray-500"><p>Address: <strong>{saddress}</strong></p></span>
+                                     
+                                  
+                                   
+                             
                                 </div>
                             </div>
                             {/* Right Part */}
@@ -146,15 +153,7 @@ const Invoice = () => {
                             {/* Ship To Info */}
                             <div className="w-full md:w-1/2 mb-6 md:mb-0">
                                 <h3 className="text-xl font-semibold mb-4">Ship To</h3>
-                                {/* <p>
-                                    Name: <strong>{sname}</strong>
-                                </p>
-                                <p>
-                                    Phone: <strong>{sphone}</strong>
-                                </p>
-                                <p>
-                                    Address: <strong>{saddress}</strong>
-                                </p> */}
+                             
                                 <p>
                                     Name: <strong>{rname}</strong>
                                 </p>

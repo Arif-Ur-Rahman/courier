@@ -27,13 +27,13 @@ const Addparcel = () => {
   console.log('ccccccccc', user);
   console.log('xxxxx', user);
   const [formData, setFormData] = useState({
-    sphone: '',
+    // sphone: '',
     rphone: '',
-    sname: '',
+    // sname: '',
     rname: '',
-    semail: '',
+    // semail: '',
     remail: '',
-    saddress: '',
+    // saddress: '',
     raddress: '',
     sdistrict: 'Dhaka City', // Initialized to default value
     rdistrict: 'Dhaka City', // Initialized to default value
@@ -100,12 +100,20 @@ const Addparcel = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.weight, formData.sdistrict, formData.rdistrict]);
 
+  console.log('hello......', formData);
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+  const updatedFormData = {
+    ...formData,    // Spread the existing form data fields
+    sname: user.username,  // Add the sname field
+    sphone: user.number,
+    semail: user.email,
+    saddress: user.address,
+  };
     try {
       // Send POST request to add parcel
-      const response = await axios.post('http://localhost:5000/api/parcels', formData,
+      const response = await axios.post('http://localhost:5000/api/parcels', updatedFormData,
         {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -119,14 +127,14 @@ const Addparcel = () => {
       
       // Send confirmation email to user
       await sendUserConfirmationEmail(
-        formData.sname,
+        user.username,
         formData.rname,
-        formData.semail,
+        user.email,
         formData.remail,
         parcel._id,
-        formData.sphone,
+        user.number,
         formData.rphone,
-        formData.saddress,
+        user.address,
         formData.raddress,
         formData.weight,
         formData.codAmount,
@@ -142,14 +150,14 @@ const Addparcel = () => {
 
       // Send notification email to admin
       await sendAdminNotificationEmail(
-        formData.sname,
+        user.username,
         formData.rname,
-        formData.semail,
+        user.email,
         formData.remail,
         parcel._id,
-        formData.sphone,
+        user.number,
         formData.rphone,
-        formData.saddress,
+        user.address,
         formData.raddress,
         formData.weight,
         formData.codAmount,
@@ -221,7 +229,7 @@ const Addparcel = () => {
 
 
             {/* Sender Phone */}
-            <div>
+            {/* <div>
               <label className="block text-gray-700">Sender Phone#</label>
               <input 
                 type="text" 
@@ -230,7 +238,7 @@ const Addparcel = () => {
                 onChange={handleChange}
                 className="w-full p-2 border rounded" 
                 placeholder="Type Phone Number" />
-            </div>
+            </div> */}
 
             {/* Receiver Phone */}
             <div>
@@ -245,7 +253,7 @@ const Addparcel = () => {
             </div>
 
             {/* Sender Name */}
-            <div>
+            {/* <div>
               <label className="block text-gray-700">Sender Name</label>
               <input 
                 type="text" 
@@ -254,7 +262,7 @@ const Addparcel = () => {
                 onChange={handleChange}
                 className="w-full p-2 border rounded" 
                 placeholder="Type Sender Name" />
-            </div>
+            </div> */}
 
             {/* Receiver Name */}
             <div>
@@ -269,7 +277,7 @@ const Addparcel = () => {
             </div>
 
             {/* Sender Email */}
-            <div>
+            {/* <div>
               <label className="block text-gray-700">Sender Email</label>
               <input 
                 type="email" 
@@ -278,7 +286,7 @@ const Addparcel = () => {
                 onChange={handleChange}
                 className="w-full p-2 border rounded" 
                 placeholder="Type Sender Email" />
-            </div>
+            </div> */}
 
             {/* Receiver Email */}
             <div>
@@ -293,7 +301,7 @@ const Addparcel = () => {
             </div>
 
             {/* Sender Address */}
-            <div>
+            {/* <div>
               <label className="block text-gray-700">Sender Address</label>
               <input 
                 type="text" 
@@ -302,7 +310,7 @@ const Addparcel = () => {
                 onChange={handleChange}
                 className="w-full p-2 border rounded" 
                 placeholder="Type Sender Address" />
-            </div>
+            </div> */}
 
             {/* Receiver Address */}
             <div>

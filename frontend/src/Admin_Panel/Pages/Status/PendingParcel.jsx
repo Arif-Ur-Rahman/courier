@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import ASidebar from '../../Shared/Asidebar';
 import Navbar from '../../../Pages/Shared/Navbar';
 import { AuthContext } from '../../../contexts/AuthContext';
+import Swal from 'sweetalert2';
+import Sidebar from '../../../Pages/Shared/Sidebar';
 
 const PendingParcel = () => {
     const { user, token } = useContext(AuthContext);
@@ -35,6 +37,13 @@ const PendingParcel = () => {
         const response = await axios.patch(`http://localhost:5000/api/consignment/${parcelId}/approve`);
         console.log('Parcel approved:', response.data);
         setParcels(parcels.filter(parcel => parcel._id !== parcelId)); // Remove approved parcel from pending list
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: " Parcel Successfully Approved ",
+          showConfirmButton: false,
+          timer: 1500
+        });
       } catch (error) {
         console.error('Error approving parcel', error);
       }
@@ -45,6 +54,13 @@ const PendingParcel = () => {
         const response = await axios.patch(`http://localhost:5000/api/consignment/${parcelId}/reject`);
         console.log('Parcel rejected:', response.data);
         setParcels(parcels.filter(parcel => parcel._id !== parcelId));  
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: " Parcel Has been Rejected ",
+          showConfirmButton: false,
+          timer: 1500
+        });
       } catch (error) {
         console.error('Error rejecting parcel', error);
       }
@@ -54,7 +70,9 @@ const PendingParcel = () => {
       <>
         <Navbar />
         <div className="flex">
-          <ASidebar />
+          {
+            user?.role === "Admin"?<ASidebar></ASidebar>:<Sidebar></Sidebar>
+          }
           <div className="p-8 bg-gray-100 w-screen">
             <h2 className="text-xl font-bold mb-6">Pending Parcels</h2>
             <div className="flex items-center gap-2 mb-4">

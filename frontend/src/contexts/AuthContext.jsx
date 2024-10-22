@@ -2,6 +2,8 @@
 
 import React, { createContext, useState, useEffect } from 'react';
 import { decodeJwt } from 'jose';
+// import { jsx } from 'react/jsx-runtime';
+
 
 // Create the AuthContext
 export const AuthContext = createContext();
@@ -22,6 +24,9 @@ const AuthProvider = ({ children }) => {
       setUser({
         username: decoded.username || decoded.name, // Use 'username' or fallback to 'name'
         email: decoded.email,
+        number: decoded.number,
+        address: decoded.address,
+        bname: decoded.bname,
         role: decoded.role,
       });
       setToken(token); // Store token in state

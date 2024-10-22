@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../Shared/Sidebar";
 import Navbar from "../Shared/Navbar";
 import Swal from "sweetalert2";
+import ASidebar from "../../Admin_Panel/Shared/Asidebar";
+import { AuthContext } from "../../contexts/AuthContext";
 // import withReactContent from "sweetalert2-react-content";
 
 const ConDetails = () => {
+  const { user, token } = useContext(AuthContext);
   const { id } = useParams(); //
   const [parcelData, setParcelData] = useState(null);
   const navigate = useNavigate();
@@ -61,7 +64,9 @@ const ConDetails = () => {
     <>
       <Navbar></Navbar>
       <div className="flex ">
-        <Sidebar></Sidebar>
+        {
+          user?.role === "Admin"?<ASidebar></ASidebar>:<Sidebar></Sidebar>
+        }
         <div className="bg-gray-100  w-screen p-10">
             <div className="mb-8 text-start font-semibold text-xl"></div>
                
@@ -88,12 +93,26 @@ const ConDetails = () => {
                   </div>
                   <div className="text-">
                     <p className="text-gray-500">Created at: {new Date(parcelData.createdAt).toLocaleString()}</p>
-                    <p className="text-gray-500">Approved at: {parcelData.approvedAt || "Not Yet"}</p>
+                    {parcelData.status === "approved" ? (<p className="text-gray-500">Approved at: Yes</p>): (<p className="text-gray-500">Approved at: Not Yet </p>)}
                     <p><span className="text-gray-500">Weight:</span> {parcelData.weight || "KG"}</p>
                     <p className="font-bold text-lg">COD: ৳ {parcelData.codAmount}</p>
                     <p className="text-red-500">{parcelData.status}</p>
                     <div className="mt-4 flex space-x-4">
-                   <button onClick={()=> handleDelete(parcelData._id)} className="bg-red-500 text-white px-4 py-2 rounded">Delete</button> 
+                    {parcelData.status === "approved" ? (
+                      <button
+                        disabled
+                        className="bg-red-500 text-white px-4 py-2 rounded"
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleDelete(parcelData._id)}
+                        className="bg-red-500 text-white px-4 py-2 rounded"
+                      >
+                        Delete
+                      </button>
+                    )}
                   <p className="text-gray-500">{parcelData.status}</p>
                 </div>
                   </div>

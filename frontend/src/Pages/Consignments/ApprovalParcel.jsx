@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Sidebar from '../Shared/Sidebar';
 import Navbar from '../Shared/Navbar';
+import ASidebar from '../../Admin_Panel/Shared/Asidebar';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const ApprovalParcel = () => {
   const [parcels, setParcels] = useState([]);
+  const { user, token } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchParcels = async () => {
@@ -30,7 +33,9 @@ const ApprovalParcel = () => {
     <>
         <Navbar></Navbar>
         <div className="flex">
-            <Sidebar></Sidebar>
+        {
+          user?.role === "Admin"?<ASidebar></ASidebar>:<Sidebar></Sidebar>
+        }
             <div className="p-8 bg-gray-100 w-screen">
                 <h2 className="text-xl font-bold mb-6">Approval Parcels</h2>
                 <div className="flex items-center gap-2 mb-4 ">
@@ -59,9 +64,7 @@ const ApprovalParcel = () => {
                             <td className="py-2 px-4 text-left border-b">{parcel.rname}</td>
                             <td className="py-2 px-4 text-left border-b">{parcel.codAmount}</td>
                             <td className="py-2 px-4 text-left border-b"><span className='px-2 py-1 rounded-lg bg-green-800 text-white'>{parcel.status}</span></td>
-                            <td className="py-2 px-4 text-left border-b">
-                               <Link><button className="bg-blue-600 text-white  py-2 px-4 text-left border-b rounded">View</button></Link>
-                            </td>
+                            <td className="py-2 px-2 text-left border-b"><Link to={`/userboard/con-unique/${parcel._id}`}><button className="bg-blue-600 text-white px-2 py-1 rounded">Views</button></Link></td>
                             </tr>
                         ))
                         ) : (
