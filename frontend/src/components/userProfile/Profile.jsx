@@ -51,7 +51,7 @@ const Profile = () => {
               <>
                 <h2 className="text-2xl font-semibold text-center mb-4">{userInfo.name}</h2>
                 <p className="text-gray-600 text-center mb-6">{userInfo.email}</p>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="font-medium">Business Name:</span>
                     <span className="text-gray-600">{userInfo.bname}</span>
@@ -64,18 +64,19 @@ const Profile = () => {
                     <span className="font-medium">Address:</span>
                     <span className="text-gray-600">{userInfo.address}</span>
                   </div>
-                </div>
-                <div className="flex justify-between">
+                  <div className="flex justify-between">
                     <span className="font-medium">Role:</span>
                     <span className="text-gray-600">{userInfo.role}</span>
                   </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Member Since:</span>
-                  <span className="text-gray-600">
-                    {new Date(userInfo.createdAt).toLocaleDateString()} {/* Format the date */}
-                  </span>
-                </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium">Member Since:</span>
+                    <span className="text-gray-600">
+                      {new Date(userInfo.createdAt).toLocaleDateString()} {/* Format the date */}
+                    </span>
+                  </div>
 
+                </div>
+                
                 <div className="mt-6 text-center">
                   <button
                     className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600"
