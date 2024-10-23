@@ -14,13 +14,15 @@ const CancellParcel = () => {
   useEffect(() => {
     const fetchParcels = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/consignment?status=cancelled');
+        if(user?.email){
+        const response = await axios.get(`http://localhost:5000/api/consignment?status=cancelled&userEmail=${user.email}&role=${user.role}`);
         console.log('Fetched Cancell parcels:', response);
         if (Array.isArray(response.data)) {
           setParcels(response.data);  // Ensure it's an array
         } else {
           console.error('Unexpected response format:', response.data);
         }
+      }
       } catch (error) {
         console.error('Error fetching parcels', error);
       }
