@@ -107,7 +107,7 @@ const PendingParcel = () => {
               <table className="min-w-full printable-label">
                 <thead>
                   <tr>
-                  <th>email</th>
+                  {/* <th>email</th> */}
                     <th className="py-2 px-4 text-left border-b">Sender Name</th>
                     <th className="py-2 px-4 text-left border-b">Receiver Name</th>
                     <th className="py-2 px-4 text-left border-b">COD Amount</th>
@@ -121,7 +121,7 @@ const PendingParcel = () => {
                   {parcels.length > 0 ? (
                     parcels.map(parcel => (
                       <tr key={parcel._id} className="border-t">
-                        <td>{parcel.semail}</td>
+                        {/* <td>{parcel.semail}</td> */}
                         <td className="py-2 px-4 text-left border-b">{parcel.sname}</td>
                         <td className="py-2 px-4 text-left border-b">{parcel.rname}</td>
                         <td className="py-2 px-4 text-left border-b">{parcel.codAmount}</td>
